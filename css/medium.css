@@ -1,0 +1,6 @@
+@media screen and (min-width: 650px) {
+
+    div.head a img {
+        height: 75px;
+    }
+}

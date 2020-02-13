@@ -1,0 +1,44 @@
+@media screen and (min-width: 900px) {
+
+    nav ul {
+        position: initial;
+        background-color: unset;
+    }
+
+    nav button {
+        display: none;
+    }
+
+    nav ul.hide {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    nav ul#clickMenu a {
+        color: white;
+    }
+
+    ul#clickMenu a:visited {
+        color: #D3D4DC;
+    }
+
+    ul#clickMenu a:hover {
+        color: #F3F3F4;
+    }
+
+    ul#clickMenu a:active {
+        color: #94ACBC;
+    }
+
+    div.hero,
+    article {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    picture.info_image img {
+        max-width: 550px;
+    }
+}

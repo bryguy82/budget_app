@@ -1,0 +1,16 @@
+
+
+Install XAMPP
+https://blainerobertson.github.io/336br/views/xampp_windows.html
+
+Install Visual Studio
+https://blainerobertson.github.io/336br/views/vscode-install.html
+
+Database connection information
+https://blainerobertson.github.io/336d2lv2/views/db-connection.html
+
+Myphpadmin user setup
+https://blainerobertson.github.io/336br/views/proxy-user.html
+
+Import database
+https://blainerobertson.github.io/336br/views/local-db.html
