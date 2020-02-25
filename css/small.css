@@ -33,6 +33,7 @@ ul {
 }
 
 body {
+    display: grid;
     height: 100%;
     width: 100%;
 }
@@ -52,6 +53,11 @@ div.head {
 
 div.head div.logo {
     border: 3px solid #94ACBC;
+    border-radius: 1em;
+}
+
+div.head div.login {
+    border: 3px solid #3ADE64;
     border-radius: 1em;
 }
 
@@ -114,6 +120,10 @@ nav button {
     height: 2em;
 }
 
+div.nav li.logout img {
+    height: 50px;
+}
+
 /*-----------------------------------------------------*/
 div.hero,
 div.hero picture img {
@@ -126,6 +136,10 @@ div.page_title {
     justify-content: center;
     align-items: center;
     height: 8em;
+}
+
+div.page_title h1 {
+    margin: 0 .5em;
 }
 
 
