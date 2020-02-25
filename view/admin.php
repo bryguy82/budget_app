@@ -53,27 +53,16 @@ if(!$_SESSION['loggedin']) {
                     </ul>
                 </div>
                 <h3>Your trackers will display here</h3>
-                <!-- <div class="box_1">
-                    <a href="/budget/saving/">
-                        <img src="/budget/images/save_vector_transparent_200.png" alt="Save money icon">
-                        <h2>Savings Tracker</h2>
-                        <h4>Enjoy our easy-to-use saving tool to help you keep track of your savings.</h4>
-                    </a>
-                </div>
-                <div class="box_1">
-                    <a href="/budget/spending/">
-                        <img src="/budget/images/spend_vector_transparent_200.png" alt="Spend money icon">
-                        <h2>Spending Tracker</h2>
-                        <h4>Keep track of your spending habits so you can gain control of your life.</h4>
-                    </a>
-                </div>
-                <div class="box_1">
-                    <a href="/budget/debt/">
-                        <img src="/budget/images/house_vector_transparent_200.png" alt="House icon">
-                        <h2>Debt Tracker</h2>
-                        <h4>Manage control of your debt to reach your financial freedom.</h4>
-                    </a>
-                </div> -->
+
+                <!-- Tables are displayed with this class <div class="box_1"> -->
+                <?php
+                    if (isset($saveTable)) {
+                        echo $saveTable;
+                    }
+
+                    // Add the tables for spend and debt here
+                ?>
+                
             </div>
         </article>
 

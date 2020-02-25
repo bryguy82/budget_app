@@ -24,7 +24,7 @@
                 <picture class="hero_image">
                     <source media="(max-width: 400px)" srcset="/budget/images/micheile-henderson-ZVprbBmT8QA-unsplash_400.jpg">
                     <source media="(max-width: 650px)" srcset="/budget/images/micheile-henderson-ZVprbBmT8QA-unsplash_650.jpg">
-                    <img title="Make a Change"  src="/budget/images/micheile-henderson-ZVprbBmT8QA-unsplash_900.jpg" alt="Woman holding coins in her hands">
+                    <img title="Make a Change"  src="/budget/images/micheile-henderson-ZVprbBmT8QA-unsplash_900.jpg" alt="Seedling and coins in a glass cup">
                 </picture>
             </div>
         </div>
@@ -35,51 +35,36 @@
                     <div class="info_header">
                         <h2>Savings Trackers</h2>
                     </div>
-            <!-- Temporary message -->
-                    <div>
-                        <p>It looks like you haven't started any saving trackers yet.</p>
-                        <p>Your trackers will appear here after logging in and creating them.  Let's do this.</p>
-                        <p>Click below to set up your user account to begin tracking or login to check your progress.</p>
-                        <div><a href="/budget/accounts/?action=Login" title="My Account">Track My Savings</a></div>
-                        <a href="/budget/saving/?action=addSave">Temporary Add Save Page</a>
-                    </div>
                 </div>
-
-
-                <!-- Use box_1 for links to the trackers that are created by the user. -->
-                <!-- <div class="box_1">
-                    <a href="/budget/saving/">
-                        <img src="/budget/images/travel-clipart-man_100.png" alt="Man with suitcase icon">
-                        <h2>Disneyland</h2>
-                        <h4>Enjoy our easy-to-use saving tool to help you keep track of your savings.</h4>
-                    </a>
-                </div> -->
 
                 <!-- class box_1 for any saved trackers to be displayed -->
                 <?php
+
+                    $new_tracker = "<div class='tracker_link'>
+                                        <div>
+                                            <a href='/budget/saving/?action=addSave'>Start a New Tracker</a>
+                                        </div>
+                                    </div>";
+
                     if(isset($_SESSION['loggedin'])) {
                         $save = getSaveTrackers($_SESSION['userData']['userId'], $type);
                         if (sizeof($save) > 0) {
                             $saveTrackersData = buildSaveTrackers($save);
+                            echo $new_tracker;
                             echo $saveTrackersData;
                         }
+                    } else {
+                        echo 
+                        "<div class='info'>
+                            <div>
+                                <p>It looks like you haven't started any saving trackers yet.</p>
+                                <p>Your trackers will appear here after logging in and creating them.  Let's do this.</p>
+                                <p>Click below to set up your user account to begin tracking or login to check your progress.</p>
+                                <div><a href='/budget/accounts/?action=Login' title='My Account'>Track My Savings</a></div>
+                            </div>
+                        </div>";
                     }
                 ?>
-
-                <!-- <div class="box_1">
-                    <a href="/budget/spending/">
-                        <img src="/budget/images/spend_vector_transparent_200.png" alt="Spend money icon">
-                        <h2>Spending Tracker</h2>
-                        <h4>Keep track of your spending habits so you can gain control of your life.</h4>
-                    </a>
-                </div>
-                <div class="box_1">
-                    <a href="/budget/debt/">
-                        <img src="/budget/images/house_vector_transparent_200.png" alt="House icon">
-                        <h2>Debt Tracker</h2>
-                        <h4>Manage control of your debt to reach your financial freedom.</h4>
-                    </a>
-                </div> -->
             </div>
         </article>
 

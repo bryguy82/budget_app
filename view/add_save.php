@@ -21,7 +21,11 @@
                 <div class="page_title">
                     <h1>Create Savings Tracker</h1>
                 </div>
+            </div>
+        </div>
 
+        <div class="trackers">
+            <div>
                 <!-- Calculator for Future Value -->
                 <div class="box_2">
                     <div>
@@ -105,7 +109,7 @@
                         <fieldset>
                             <label>
                                 Tracker Name<span> *</span>
-                                <input type="text" name="name" placeholder="Cruise" required>
+                                <input type="text" name="name" placeholder="My Vacation" required>
                             </label>
                             <label>
                                 Category<span> *</span>
