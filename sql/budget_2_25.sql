@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2020 at 04:00 PM
+-- Generation Time: Feb 25, 2020 at 10:26 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -37,6 +37,20 @@ CREATE TABLE `save` (
   `total` int(11) NOT NULL,
   `trackerId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `save`
+--
+
+INSERT INTO `save` (`saveId`, `saveDate`, `start`, `deposit`, `interestEarned`, `total`, `trackerId`) VALUES
+(3, '2020-02-26', 5000, 10, 0, 5010, 2),
+(4, '2020-02-26', 5010, 100, 21, 5131, 2),
+(5, '2020-02-27', 5131, 50, 21, 5202, 2),
+(6, '2020-02-28', 5202, 100, 22, 5324, 2),
+(7, '2020-02-29', 5324, 100, 22, 5446, 2),
+(8, '2020-03-04', 5446, 12345, 74, 17865, 2),
+(9, '2020-03-05', 17865, 20, 74, 17959, 2),
+(10, '2020-03-06', 17959, 999, 78, 19036, 2);
 
 -- --------------------------------------------------------
 
@@ -116,7 +130,7 @@ ALTER TABLE `user_data`
 -- AUTO_INCREMENT for table `save`
 --
 ALTER TABLE `save`
-  MODIFY `saveId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `saveId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `trackers`
