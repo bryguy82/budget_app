@@ -5,7 +5,7 @@
 function dbConnect()
 {
     $server = "localhost";
-    $database = "finances";
+    $database = "budget";
     $user = "iClient";
     $password = "w6zqDoLAMp6XEaBK";
 
