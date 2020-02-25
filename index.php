@@ -3,6 +3,9 @@
  * BUDGET CONTROLLER
  */
 
+// Create or access a Session 
+session_start();
+
 // Get the database connection file
 require_once 'library/connection.php';
 
@@ -22,7 +25,7 @@ switch ($action){
         break;
 
     default:
-        include 'acme/view/home.php';
+        include 'view/home.php';
 }
 
 
