@@ -13,24 +13,92 @@
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/budget/common/header.php'; ?>
     </header>
     <nav>
-        <div class="nav">
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/budget/common/nav.php'; ?>
-        </div>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/budget/common/nav.php'; ?>
     </nav>
     <main>
-    <div class="hero">
-        <div>
-            <div class="page_title">
-                <h1>Take Control of your Finances Today!</h1>
+        <div class="hero">
+            <div>
+                <div class="page_title">
+                    <h1>Use Our Tools to Maximize Your Savings</h1>
+                </div>
+                <picture class="hero_image">
+                    <source media="(max-width: 400px)" srcset="/budget/images/micheile-henderson-ZVprbBmT8QA-unsplash_400.jpg">
+                    <source media="(max-width: 650px)" srcset="/budget/images/micheile-henderson-ZVprbBmT8QA-unsplash_650.jpg">
+                    <img title="Make a Change"  src="/budget/images/micheile-henderson-ZVprbBmT8QA-unsplash_900.jpg" alt="Woman holding coins in her hands">
+                </picture>
             </div>
-            <picture class="hero_image">
-                <source media="(max-width: 400px)" srcset="/budget/images/kat-yukawa-K0E6E0a0R3A-unsplash_400.jpg">
-                <source media="(max-width: 650px)" srcset="/budget/images/kat-yukawa-K0E6E0a0R3A-unsplash_650.jpg">
-                <img title="Make a Change"  src="/budget/images/kat-yukawa-K0E6E0a0R3A-unsplash_900.jpg" alt="Woman holding coins in her hands">
-            </picture>
         </div>
-    </div>
 
+        <article class="trackers">
+            <div>
+                <div class="info">
+                    <div class="info_header">
+                        <h2>Savings Trackers</h2>
+                    </div>
+            <!-- Temporary message -->
+                    <div>
+                        <p>It looks like you haven't started any saving trackers yet.</p>
+                        <p>Your trackers will appear here after logging in and creating them.  Let's do this.</p>
+                        <p>Click below to set up your user account to begin tracking or login to check your progress.</p>
+                        <div><a href="/budget/accounts/?action=Login" title="My Account">Track My Savings</a></div>
+                        <a href="/budget/saving/?action=addSave">Temporary Add Save Page</a>
+                    </div>
+                </div>
+
+
+                <!-- Use box_1 for links to the trackers that are created by the user. -->
+                <!-- <div class="box_1">
+                    <a href="/budget/saving/">
+                        <img src="/budget/images/travel-clipart-man_100.png" alt="Man with suitcase icon">
+                        <h2>Disneyland</h2>
+                        <h4>Enjoy our easy-to-use saving tool to help you keep track of your savings.</h4>
+                    </a>
+                </div> -->
+
+                <!-- class box_1 for any saved trackers to be displayed -->
+                <?php
+                    if(isset($_SESSION['loggedin'])) {
+                        $save = getSaveTrackers($_SESSION['userData']['userId'], $type);
+                        if (sizeof($save) > 0) {
+                            $saveTrackersData = buildSaveTrackers($save);
+                            echo $saveTrackersData;
+                        }
+                    }
+                ?>
+
+                <!-- <div class="box_1">
+                    <a href="/budget/spending/">
+                        <img src="/budget/images/spend_vector_transparent_200.png" alt="Spend money icon">
+                        <h2>Spending Tracker</h2>
+                        <h4>Keep track of your spending habits so you can gain control of your life.</h4>
+                    </a>
+                </div>
+                <div class="box_1">
+                    <a href="/budget/debt/">
+                        <img src="/budget/images/house_vector_transparent_200.png" alt="House icon">
+                        <h2>Debt Tracker</h2>
+                        <h4>Manage control of your debt to reach your financial freedom.</h4>
+                    </a>
+                </div> -->
+            </div>
+        </article>
+
+        <article class="tips">
+            <div>
+                <div class="info">
+                    <!-- <div class="info_header">
+                        <h2>Budgeting Tips & Tricks</h2>
+                    </div>
+                    <picture class="info_image">
+                        <source media="(max-width: 400px)" srcset="/budget/images/budget_tips_350.jpg">
+                        <img title="Budget charts"  src="/budget/images/budget_tips_550.jpg" alt="Budget charts">
+                    </picture>
+                    <div class="info_text">
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                    </div> -->
+                </div>
+            </div>
+        </article>
         
     </main>
     <footer>

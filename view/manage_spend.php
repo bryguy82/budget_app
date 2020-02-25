@@ -13,20 +13,19 @@
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/budget/common/header.php'; ?>
     </header>
     <nav>
-        <div class="nav">
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/budget/common/nav.php'; ?>
-        </div>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/budget/common/nav.php'; ?>
     </nav>
     <main>
-        <div class="hero_title">
-            <h1>Spending Tracking</h1>
-        </div>
         <div class="hero">
-            <div class="hero_img">
-                <img src="/budget/images/kat-yukawa-K0E6E0a0R3A-unsplash-900.jpg" alt="Woman holding coins in her hands">
-            </div>
-            <div class="hero_text">
-
+            <div>
+                <div class="page_title">
+                    <h1>Good Budgeting Starts With Spending Discipline</h1>
+                </div>
+                <picture class="hero_image">
+                    <source media="(max-width: 400px)" srcset="/budget/images/artem-beliaikin-49mCO5ZRQDk-unsplash_400.jpg">
+                    <source media="(max-width: 650px)" srcset="/budget/images/artem-beliaikin-49mCO5ZRQDk-unsplash_650.jpg">
+                    <img title="Make a Change"  src="/budget/images/artem-beliaikin-49mCO5ZRQDk-unsplash_900.jpg" alt="Woman holding coins in her hands">
+                </picture>
             </div>
         </div>
 
