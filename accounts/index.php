@@ -10,6 +10,7 @@ session_start();
 require_once '../library/connection.php';
 require_once '../library/functions.php';
 require_once '../model/accounts-model.php';
+require_once '../model/save-model.php';
 
 
 $action = filter_input(INPUT_POST, 'action');
@@ -17,6 +18,9 @@ if ($action == NULL){
     $action = filter_input(INPUT_GET, 'action');
 }
 
+$type_save = "save";
+$type_spend = "spend";
+$type_debt = "debt";
 
 switch ($action){
     case 'login':
@@ -32,6 +36,17 @@ switch ($action){
         break;
 
     case 'admin':
+
+        $saveList = getSaveTrackers($_SESSION['userData']['userId'], $type_save);
+        if (sizeof($saveList) > 0) {
+            $saveTable = buildSaveAdminTable($saveList);
+            include '../view/admin.php';
+            exit;
+        }
+        
+        /**
+         * ADD SPEND AND DEBT TABLE TRACKERS HERE
+         */
         
         include '../view/admin.php';
         exit;
@@ -54,11 +69,9 @@ switch ($action){
         // If a valid password exists, proceed with the login process
         // Query the user data based on the email address
         $userData = getUser($userEmail);
-        // Compare the password just submitted against
-        // the hashed password for the matching user
+        // Compare the password just submitted against the hashed password for the matching user
         $hashCheck = password_verify($userPassword, $userData['userPassword']);
-        // If the hashes don't match create an error
-        // and return to the login view
+        // If the hashes don't match create an error and return to the login view
         if (!$hashCheck) {
             $message = '<p class="notice">Please check your password and try again.</p>';
             include '../view/login.php';
@@ -68,21 +81,23 @@ switch ($action){
         // If a valid user exists, log them in
         $_SESSION['loggedin'] = TRUE;
         // Remove the password from the array
-        // the array_pop function removes the last
-        // element from an array
         array_pop($userData);
         // Store the array into the session
         $_SESSION['userData'] = $userData;
+        
         // Send them to the admin view
-        
-        /** Moved product reviews to the beginning of the admin page */
+        // Get and set the Save trackers variable as a table
+        $saveList = getSaveTrackers($_SESSION['userData']['userId'], $type_save);
+        if (sizeof($saveList) > 0) {
+            $saveTable = buildSaveAdminTable($saveList);
+            include '../view/admin.php';
+            exit;
+        }
 
-        // // Check if the firstname cookie exists, delete it
-        // if(isset($_COOKIE['firstName'])){
-        //     setcookie('firstName', '', strtotime('-1 year'), '/');
-        //     $cookieFirstname = null;
-        // }
-        
+        /**
+         * ADD SPEND AND DEBT TABLE TRACKERS HERE
+         */
+            
         include '../view/admin.php';
         exit;
         break;
