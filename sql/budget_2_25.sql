@@ -33,6 +33,7 @@ CREATE TABLE `save` (
   `saveDate` date NOT NULL,
   `start` int(11) NOT NULL,
   `deposit` int(11) NOT NULL,
+  `interestEarned` int(11) NOT NULL,
   `total` int(11) NOT NULL,
   `trackerId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
