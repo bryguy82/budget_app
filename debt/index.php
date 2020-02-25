@@ -3,6 +3,9 @@
  * DEBT CONTROLLER
  */
 
+// Create or access a Session 
+session_start();
+
 // Get the database connection file
 require_once '../library/connection.php';
 
@@ -14,12 +17,16 @@ if ($action == NULL){
 
 
 switch ($action){
-    case 'Home':
-        // include 'view/home.php';
+    // case 'Home':
+    //     // include 'view/home.php';
+    //     break;
+
+    case 'debt':
+        include '../view/manage_debt.php';
         break;
 
     default:
-        include 'budget/view/manage.php';
+        include '../view/home.php';
 
 }
 
