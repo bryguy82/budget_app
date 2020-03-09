@@ -43,6 +43,26 @@ function buildSaveTrackers($trackerList){
 }
 
 /**
+ * Build the HTML for spending trackers in the DB
+ */
+function buildSpendTrackers($trackerList){
+
+    $trackerBoxes = "";
+    foreach ($trackerList as $tracker) {
+        $trackerBoxes .= "<div class='box_1'>";
+        $trackerBoxes .= "<a href='/budget/spending/?action=ViewSpend&spendTrackerId=".urldecode($tracker['spendTrackerId'])."'>";
+        // $trackerBoxes .= "<img src='/budget/images/travel-clipart-man_100.png' alt='Man with suitcase icon'>";
+        $trackerBoxes .= "<h2>".$tracker['trackerName']."</h2>";
+        $trackerBoxes .= "<ul>";
+        $trackerBoxes .= "<li>Goal: $".$tracker['spendingGoal']."</li>";
+        $trackerBoxes .= "</ul>";
+        $trackerBoxes .= "</a>";
+        $trackerBoxes .= "</div>";
+    }
+    return $trackerBoxes;
+}
+
+/**
  * Table view for save trackers on admin page
  */
 function buildSaveAdminTable($saveList) {
@@ -51,19 +71,19 @@ function buildSaveAdminTable($saveList) {
     $trackerTable .= "<table>";
     $trackerTable .= "<tr>";
     $trackerTable .= "<th>Name</th>";
-    $trackerTable .= "<th>Category</th>";
-    $trackerTable .= "<th>Interest Rate</th>";
-    $trackerTable .= "<th>Term</th>";
+    $trackerTable .= "<th class='hide'>Category</th>";
+    $trackerTable .= "<th class='hide'>Interest Rate</th>";
+    $trackerTable .= "<th class='hide'>Term</th>";
     $trackerTable .= "<th>Goal</th>";
-    $trackerTable .= "<th>View</th>";
+    $trackerTable .= "<th>Tracker</th>";
     $trackerTable .= "</tr>";
     foreach ($saveList as $tracker) {
        $trackerTable .= "<tr>";
        $trackerTable .= "<td>".$tracker['trackerName']."</td>";
-       $trackerTable .= "<td>".$tracker['trackerCategory']."</td>";
-       $trackerTable .= "<td>".$tracker['interest']."</td>";
-       $trackerTable .= "<td>".$tracker['term']."</td>";
-       $trackerTable .= "<td>".$tracker['goal']."</td>";
+       $trackerTable .= "<td class='hide'>".$tracker['trackerCategory']."</td>";
+       $trackerTable .= "<td class='hide'>".$tracker['interest']." %</td>";
+       $trackerTable .= "<td class='hide'>".$tracker['term']."</td>";
+       $trackerTable .= "<td>$".$tracker['goal']."</td>";
        $trackerTable .= "<td><a href='/budget/saving/?action=ViewSave&trackerId=".urldecode($tracker['trackerId'])."'>View</a></td>";
        $trackerTable .= "</tr>";    
     }
@@ -82,10 +102,30 @@ function buildSaveData($trackerData) {
     foreach ($trackerData as $entry) {
         $data .= "<tr>";
         $data .= "<td>".$entry['saveDate']."</td>";
-        $data .= "<td>".$entry['start']."</td>";
-        $data .= "<td>".$entry['deposit']."</td>";
-        $data .= "<td>".$entry['interestEarned']."</td>";
-        $data .= "<td>".$entry['total']."</td>";
+        $data .= "<td>$".$entry['start']."</td>";
+        $data .= "<td class='hide'>$".$entry['deposit']."</td>";
+        $data .= "<td class='hide'>$".$entry['interestEarned']."</td>";
+        $data .= "<td>$".$entry['total']."</td>";
+        $data .= "</tr>";
+    }
+    
+    return $data;
+}
+
+/**
+ * Table view for data in Spend tracker
+ */
+function buildSpendData($trackerData) {
+
+    $data = "";
+    foreach ($trackerData as $entry) {
+        $data .= "<tr>";
+        $data .= "<td>".$entry['spendDate']."</td>";
+        $data .= "<td>".$entry['category']."</td>";
+        $data .= "<td class='hide'>".$entry['name']."</td>";
+        $data .= "<td class='hide'>$".$entry['start']."</td>";
+        $data .= "<td class='hide'>$".$entry['spendAmount']."</td>";
+        $data .= "<td>$".$entry['total']."</td>";
         $data .= "</tr>";
     }
 
@@ -102,5 +142,6 @@ function calculateSaveEntry($start, $deposit, $interest) {
 
     return array($earned, $total);
 }
+
 
 ?>

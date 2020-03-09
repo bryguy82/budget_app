@@ -29,6 +29,15 @@
             </div>
         </div>
 
+        <div class="error_message">
+            <!-- Display an error message if one exists -->
+            <?php
+                if (isset($message)) {
+                    echo $message;
+                }
+            ?>
+        </div>
+
         <article class="trackers">
             <div>
                 <!-- <div class="box_1">
