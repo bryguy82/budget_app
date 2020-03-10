@@ -29,6 +29,15 @@
             </div>
         </div>
 
+        <div class="error_message">
+            <!-- Display an error message if one exists -->
+            <?php
+                if (isset($message)) {
+                    echo $message;
+                }
+            ?>
+        </div>
+
         <article class="trackers">
             <div>
                 <div class="info">
@@ -40,17 +49,15 @@
                 <!-- class box_1 for any saved trackers to be displayed -->
                 <?php
 
-                    $new_tracker = "<div class='tracker_link'>
-                                        <div>
-                                            <a href='/budget/saving/?action=addSave'>Start a New Tracker</a>
-                                        </div>
-                                    </div>";
-
                     if(isset($_SESSION['loggedin'])) {
+                        echo "<div class='tracker_link'>
+                                 <div><a href='/budget/saving/?action=addSave'>Start a New Tracker</a></div>
+                              </div>";
+
                         $save = getSaveTrackers($_SESSION['userData']['userId'], $type);
+
                         if (sizeof($save) > 0) {
                             $saveTrackersData = buildSaveTrackers($save);
-                            echo $new_tracker;
                             echo $saveTrackersData;
                         }
                     } else {
@@ -58,9 +65,9 @@
                         "<div class='info'>
                             <div>
                                 <p>It looks like you haven't started any saving trackers yet.</p>
-                                <p>Your trackers will appear here after logging in and creating them.  Let's do this.</p>
+                                <p>Your trackers will appear here after logging in and creating them.</p>
                                 <p>Click below to set up your user account to begin tracking or login to check your progress.</p>
-                                <div><a href='/budget/accounts/?action=Login' title='My Account'>Track My Savings</a></div>
+                                <div class='abutton'><a href='/budget/accounts/?action=Login' title='My Account'>Track My Savings</a></div>
                             </div>
                         </div>";
                     }

@@ -24,14 +24,25 @@
             </div>
         </div>
 
+        <div class="error_message">
+            <!-- Display an error message if one exists -->
+            <?php
+                if (isset($message)) {
+                    echo $message;
+                }
+            ?>
+        </div>
+
         <div class="trackers">
             <div>
                 <!-- Calculator for Future Value -->
                 <div class="box_2">
                     <div>
-                        <h3>Future Value Calculator</h3>
+                        <h2>Future Value Calculator</h2>
                         <p>Before you get started, we suggest you use our handy calculators to help you with your goal.</p>
-                        <p>Enter in your starting amount, your bank's interest rate, and your desired total.</p>
+                        <p>This calculator will help you determine a future value for your savings.</p>
+                        <p>Enter in your bank's interest rate, the time frame as number of periods, the regular deposit amount, and an initial value.</p>
+                        <p>* All values are required. *</p>
                     </div>
                     <fieldset class="calculate">
                         <label>
@@ -54,7 +65,7 @@
                             <button onclick="cal_FV()">Get Future Value</button>
                         </div>
                         <label>
-                            Future Value = 
+                            Future Value
                             <input type="number" name="future_value" id="future_value" readonly>
                         </label>
                     </fieldset>
@@ -63,9 +74,10 @@
                 <!-- Calculator for the number of periods -->
                 <div class="box_2">
                     <div>
-                        <h3>Number of Periods Calculator</h3>
-                        <p>Before you get started, we suggest you use our handy calculators to help you with your goal.</p>
-                        <p>Enter in your starting amount, your bank's interest rate, and your desired total.</p>
+                        <h2>Number of Periods Calculator</h2>
+                        <p>If you have a goal value in mind, use this calculator to determine how long it will take to reach that dollar amount.</p>
+                        <p>Enter in your bank's interest rate, the regular deposit amount, an initial value, and your desired future value.</p>
+                        <p>* All values are required. *</p>
                     </div>
                     <fieldset class="calculate">
                         <label>
@@ -88,7 +100,7 @@
                             <button onclick="nper()">Get Total Periods</button>
                         </div>
                         <label>
-                            Number of Periods = 
+                            Number of Periods
                             <input type="number" name="periods" id="nperiods" readonly>
                         </label>
                     </fieldset>
@@ -101,11 +113,12 @@
             <!-- Form to create a tracker -->
                 <div class="box_2">
                     <div>
-                        <h3>Start your savings tracker</h3>
-                        <p>Before you get started, we suggest you use our handy calculators to help you with your goal.</p>
-                        <p>Enter in your starting amount, your bank's interest rate, and your desired total.</p>
+                        <h2>Start your Savings Tracker</h2>
+                        <p>Now that you've had a chance to select your parameters, let us help you reach your goal!</p>
+                        <p>Enter in the following data to get started!</p>
+                        <p>* All values are required. *</p>
                     </div>
-                    <form class="input" action="/budget/saving/index.php" method="post">
+                    <form class="login input" action="/budget/saving/index.php" method="post">
                         <fieldset>
                             <label>
                                 Tracker Name<span> *</span>
@@ -113,18 +126,18 @@
                             </label>
                             <label>
                                 Category<span> *</span>
+                                <select name="category" id="category">
+                                    <option value="Cruise">Cruise</option>
+                                    <option value="Travel">Travel</option>
+                                    <option value="Vacation">Vacation</option>
+                                    <option value="Home">Home</option>
+                                    <option value="Car">Car</option>
+                                    <option value="College Fund">College Fund</option>
+                                    <option value="Rainy Day Fund">Rainy Day Fund</option>
+                                    <option value="Retirement">Retirement</option>
+                                    <option value="Other">Other</option>
+                                </select>
                             </label>
-                            <select name="category" id="category">
-                                <option value="Cruise">Cruise</option>
-                                <option value="Travel">Travel</option>
-                                <option value="Vacation">Vacation</option>
-                                <option value="Home">Home</option>
-                                <option value="Car">Car</option>
-                                <option value="College Fund">College Fund</option>
-                                <option value="Rainy Day Fund">Rainy Day Fund</option>
-                                <option value="Retirement">Retirement</option>
-                                <option value="Other">Other</option>
-                            </select>
                             <label>
                                 Interest Rate<span> *</span>
                                 <input type="number" name="rate" placeholder="5%" required>
@@ -155,23 +168,6 @@
                             </div>
                         </fieldset>
                     </form>
-                </div>
-            </div>
-        </article>
-
-        <article class="tips">
-            <div>
-                <div class="info">
-                    <!-- <div class="info_header">
-                        <h2>Budgeting Tips & Tricks</h2>
-                    </div>
-                    <picture class="info_image">
-                        <source media="(max-width: 400px)" srcset="/budget/images/budget_tips_350.jpg">
-                        <img title="Budget charts"  src="/budget/images/budget_tips_550.jpg" alt="Budget charts">
-                    </picture>
-                    <div class="info_text">
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                    </div> -->
                 </div>
             </div>
         </article>

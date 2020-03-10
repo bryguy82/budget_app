@@ -29,6 +29,15 @@
             </div>
         </div>
 
+        <div class="error_message">
+            <!-- Display an error message if one exists -->
+            <?php
+                if (isset($message)) {
+                    echo $message;
+                }
+            ?>
+        </div>
+
         <div class="trackers">
             <div>
                 <div class="box_1">
@@ -36,8 +45,8 @@
                         <tr>
                             <th>Date</th>
                             <th>Start</th>
-                            <th>Deposit</th>
-                            <th>Earned</th>
+                            <th class='hide'>Deposit</th>
+                            <th class='hide'>Earned</th>
                             <th>Total</th>
                         </tr>
 
@@ -114,6 +123,7 @@
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/budget/common/footer.php'; ?>
     </footer>
+    <script src="/budget/js/hamburger.js"></script>
 </body>
 
 </html>

@@ -21,12 +21,16 @@
                 <div class="page_title">
                     <h1>Take Control of your Finances Today!</h1>
                 </div>
-                <!-- <picture class="hero_image">
-                    <source media="(max-width: 400px)" srcset="/budget/images/kat-yukawa-K0E6E0a0R3A-unsplash_400.jpg">
-                    <source media="(max-width: 650px)" srcset="/budget/images/kat-yukawa-K0E6E0a0R3A-unsplash_650.jpg">
-                    <img title="Make a Change"  src="/budget/images/kat-yukawa-K0E6E0a0R3A-unsplash_900.jpg" alt="Woman holding coins in her hands">
-                </picture> -->
             </div>
+        </div>
+
+        <div class="error_message">
+            <!-- Display an error message if one exists -->
+            <?php
+                if (isset($message)) {
+                    echo $message;
+                }
+            ?>
         </div>
 
         <article class="trackers">
@@ -58,20 +62,6 @@
                         <a href="../accounts/?action=register">Create your account!</a>
                     </div>
                 </div>
-                <!-- <div class="box_1">
-                    <a href="/budget/saving/">
-                        <img src="/budget/images/save_vector_transparent_200.png" alt="Save money icon">
-                        <h2>Savings Tracker</h2>
-                        <h4>Enjoy our easy-to-use saving tool to help you keep track of your savings.</h4>
-                    </a>
-                </div>
-                <div class="box_1">
-                    <a href="/budget/debt/">
-                        <img src="/budget/images/house_vector_transparent_200.png" alt="House icon">
-                        <h2>Debt Tracker</h2>
-                        <h4>Manage control of your debt to reach your financial freedom.</h4>
-                    </a>
-                </div> -->
             </div>
         </article>
 

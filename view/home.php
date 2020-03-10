@@ -59,14 +59,32 @@
             <div>
                 <div class="info">
                     <div class="info_header">
-                        <h2>Budgeting Tips & Tricks</h2>
+                        <h2>15 Budgeting Tips for Your Daily Life</h2>
+                        <h3>by Rachel Cruze #1 New York Times best-selling author</h3>
                     </div>
                     <picture class="info_image">
                         <source media="(max-width: 400px)" srcset="/budget/images/budget_tips_350.jpg">
                         <img title="Budget charts"  src="/budget/images/budget_tips_550.jpg" alt="Budget charts">
                     </picture>
                     <div class="info_text">
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                    <ol>
+                        <li>Budget to zero before the month begins.</li>
+                        <li>Do the budget together</li>
+                        <li>Every month is different</li>
+                        <li>Start with the important categories first</li>
+                        <li>Pay off your debt</li>
+                        <li>Don’t be afraid to trim the budget</li>
+                        <li>Make a schedule (and stick to it)</li>
+                        <li>Track your progress</li>
+                        <li>Create a buffer in your budget</li>
+                        <li>Cut up your credit cards</li>
+                        <li>Use cash for certain budget categories that trip you up</li>
+                        <li>Tray an online budget tool</li>
+                        <li>Be content and quit the comparisons</li>
+                        <li>Have goals</li>
+                        <li>Give yourself lots of grace</li>
+                    </ol>
+                    <p class="out_link"><a href="https://www.daveramsey.com/blog/the-truth-about-budgeting/" target="_blank">See Full Article</a></p>
                     </div>
                 </div>
             </div>

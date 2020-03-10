@@ -29,6 +29,7 @@
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/budget/common/footer.php'; ?>
     </footer>
+    <script src="/budget/js/hamburger.js"></script>
 </body>
 
 </html>
