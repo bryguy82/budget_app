@@ -4,8 +4,8 @@
 <head>
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/budget/common/css.php'; ?>
 
-    <meta name="description" content="Budget Debt Viewer Page">
-    <title>Debt Viewer | Budget My Life</title>
+    <meta name="description" content="Budget View <?php if (isset($trackerName)) {echo $trackerName;} ?> Tracker Page">
+    <title>View <?php if (isset($trackerName)) {echo $trackerName;} ?> Tracker | Budget My Life</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         <div class="hero">
             <div>
                 <div class="page_title">
-                    <h1>The Burden of Debt Will Soon Be a Thing of the Past</h1>
+                    <h1><?php if (isset($trackerName)) {echo $trackerName;} ?> Table</h1>
                 </div>
                 <!-- <picture class="hero_image">
                     <source media="(max-width: 400px)" srcset="/budget/images/financial_freedom_400.jpg">

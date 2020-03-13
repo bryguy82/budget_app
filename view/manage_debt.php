@@ -49,19 +49,17 @@
                 <!-- class box_1 for any saved trackers to be displayed -->
                 <?php
 
-                    $new_tracker = "<div class='tracker_link'>
-                                        <div>
-                                            <a href='/budget/saving/?action=addSave'>Start a New Tracker</a>
-                                        </div>
-                                    </div>";
-
                     if(isset($_SESSION['loggedin'])) {
-                        // $save = getSaveTrackers($_SESSION['userData']['userId'], $type);
-                        // if (sizeof($save) > 0) {
-                        //     $saveTrackersData = buildSaveTrackers($save);
-                        //     echo $new_tracker;
-                        //     echo $saveTrackersData;
-                        // }
+                        echo "<div class='tracker_link'>
+                                  <div><a href='/budget/debt/?action=addDebt'>Start a New Tracker</a></div>
+                              </div>";
+
+                        $debt = getDebtTrackers($_SESSION['userData']['userId'], $type);
+
+                        if (sizeof($debt) > 0) {
+                            $debtTrackersData = buildDebtTrackers($debt);
+                            echo $debtTrackersData;
+                        }
                     } else {
                         echo 
                         "<div class='info'>

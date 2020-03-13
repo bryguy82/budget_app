@@ -43,7 +43,7 @@
             <!-- Calculator for the number of periods -->
                 <div class="box_2">
                     <div>
-                        <h2>Debt Calculator</h2>
+                        <h2>Number of Periods Calculator</h2>
                         <p>If you have a goal value in mind, use this calculator to determine how long it will take to reach that dollar amount.</p>
                         <p>Enter in your bank's interest rate, the regular deposit amount, an initial value, and your desired future value.</p>
                         <p>* All values are required. *</p>
@@ -54,16 +54,16 @@
                             <input type="number" name="rate" id="nrate" placeholder="5%" required>
                         </label>
                         <label>
-                            Deposit Amount<span> *</span>
-                            <input type="number" name="payment" id="npayment" placeholder="$100" required>
+                            Payment Amount<span> *</span>
+                            <input type="number" name="payment" id="npayment" placeholder="-$100" required>
                         </label>
                         <label>
                             Starting Value<span> *</span>
-                            <input type="number" name="present_value" id="npresent_value" placeholder="$1000" required>
+                            <input type="number" name="present_value" id="npresent_value" placeholder="$100000" required>
                         </label>
                         <label>
                             Future Value<span> *</span>
-                            <input type="number" name="future_value" id="nfuture_value" placeholder="$100000" required>
+                            <input type="number" name="future_value" id="nfuture_value" placeholder="$0" required>
                         </label>
                         <div class="login_button">
                             <button onclick="nper()">Get Total Periods</button>
@@ -71,6 +71,42 @@
                         <label>
                             Number of Periods
                             <input type="number" name="periods" id="nperiods" readonly>
+                        </label>
+                    </fieldset>
+                </div>
+
+                 <!-- Calculator for Payment Amount -->
+                 <div class="box_2">
+                    <div>
+                        <h2>Payment Calculator</h2>
+                        <p>Before you get started, we suggest you use our handy calculators to help you with your goal.</p>
+                        <p>This calculator will help you determine a payment amount for your loan.</p>
+                        <p>Enter in your bank's interest rate, the time frame as number of periods, the regular payment amount, and an initial value.</p>
+                        <p>* All values are required. *</p>
+                    </div>
+                    <fieldset class="calculate">
+                        <label>
+                            Rate<span> *</span>
+                            <input type="number" name="rate" id="pay_rate" placeholder="5%" required>
+                        </label>
+                        <label>
+                            Number of Periods<span> *</span>
+                            <input type="number" name="periods" id="pay_periods" placeholder="360 (30 years)" required>
+                        </label>
+                        <label>
+                            Starting Value<span> *</span>
+                            <input type="number" name="present_value" id="pay_present_value" placeholder="$1000" required>
+                        </label>
+                        <label>
+                            Future Value<span> *</span>
+                            <input type="number" name="future_value" id="pay_future_value" placeholder="$0" required>
+                        </label>
+                        <div class="login_button">
+                            <button onclick="cal_FV()">Get Future Value</button>
+                        </div>
+                        <label>
+                            Payment Amount
+                            <input type="number" name="payment" id="pay_payment" readonly>
                         </label>
                     </fieldset>
                 </div>
@@ -87,23 +123,20 @@
                         <p>Enter in the following data to get started!</p>
                         <p>* All values are required. *</p>
                     </div>
-                    <form class="login input" action="/budget/saving/index.php" method="post">
+                    <form class="login input" action="/budget/debt/index.php" method="post">
                         <fieldset>
                             <label>
                                 Tracker Name<span> *</span>
                                 <input type="text" name="name" placeholder="My Vacation" required>
                             </label>
                             <label>
-                                Category<span> *</span>
+                                Loan Category<span> *</span>
                                 <select name="category" id="category">
-                                    <option value="Cruise">Cruise</option>
-                                    <option value="Travel">Travel</option>
-                                    <option value="Vacation">Vacation</option>
-                                    <option value="Home">Home</option>
+                                    <option value="Home Mortgage">Home Mortgage</option>
                                     <option value="Car">Car</option>
-                                    <option value="College Fund">College Fund</option>
-                                    <option value="Rainy Day Fund">Rainy Day Fund</option>
-                                    <option value="Retirement">Retirement</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Credit Line">Credit Line</option>
+                                    <option value="College Loan">College</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </label>
@@ -112,17 +145,17 @@
                                 <input type="number" name="rate" placeholder="5%" required>
                             </label>
                             <label>
-                                Saving Term<span> *</span>
-                                <input type="number" name="term" placeholder="60 months" required>
+                                Loan Term<span> *</span>
+                                <input type="number" name="term" placeholder="120 months" required>
                             </label>
                             <label>
-                                Future Value Goal<span> *</span>
-                                <input type="number" name="futureValue" placeholder="$100000" required>
+                                Total Loan Value<span> *</span>
+                                <input type="number" name="loanValue" placeholder="$180000" required>
                             </label>
                             <div class="login_button">
                                 <input type="submit" name="submit" value="Start my Tracker">
                                 <!-- Add the action key and value pair -->
-                                <input type="hidden" name="action" value="TrackSave">
+                                <input type="hidden" name="action" value="TrackDebt">
                                 <?php
                                     // input field for foreign key userId
                                     echo "<input type='hidden' name='userId' value='";
@@ -146,6 +179,7 @@
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/budget/common/footer.php'; ?>
     </footer>
     <script src="/budget/js/hamburger.js"></script>
+    <script src="/budget/js/math.js"></script>
 </body>
 
 </html>
