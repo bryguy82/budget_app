@@ -63,6 +63,29 @@ function buildSpendTrackers($trackerList){
 }
 
 /**
+ * Build the HTML for debt trackers in the DB
+ */
+function buildDebtTrackers($trackerList){
+
+    $trackerBoxes = "";
+    foreach ($trackerList as $tracker) {
+        $trackerBoxes .= "<div class='box_1'>";
+        $trackerBoxes .= "<a href='/budget/debt/?action=ViewDebt&trackerId=".urldecode($tracker['debtTrackerId'])."'>";
+        // $trackerBoxes .= "<img src='/budget/images/travel-clipart-man_100.png' alt='Man with suitcase icon'>";
+        $trackerBoxes .= "<h2>".$tracker['trackerName']."</h2>";
+        $trackerBoxes .= "<ul>";
+        $trackerBoxes .= "<li>Category: ".$tracker['trackerCategory']."</li>";
+        $trackerBoxes .= "<li>Interest Rate: ".$tracker['interest']."</li>";
+        $trackerBoxes .= "<li>Term: ".$tracker['term']." months</li>";
+        $trackerBoxes .= "<li>Loan Value: $".$tracker['loanValue']."</li>";
+        $trackerBoxes .= "</ul>";
+        $trackerBoxes .= "</a>";
+        $trackerBoxes .= "</div>";
+    }
+    return $trackerBoxes;
+}
+
+/**
  * Table view for save trackers on admin page
  */
 function buildSaveAdminTable($saveList) {
