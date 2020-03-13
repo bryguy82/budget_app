@@ -19,8 +19,8 @@ function cal_FV() {
     var pvalue = parseFloat(document.getElementById("present_value").value);
 
     if (rate == 0) {
-        fv = (pvalue + (payment * num_periods))
-        document.getElementById("future_value").value = fv;
+        fv = -(pvalue + (payment * num_periods))
+        document.getElementById("future_value").value = Math.abs(fv);
     } else {
         var fvalue = FV(pvalue, rate, num_periods);
         var fv = fvalue.toFixed(2);
@@ -52,7 +52,7 @@ function nper() {
             nper_value = Math.log((pmt - fv * rate) / (pmt + rate * pv)) / Math.log(1 + rate);
         }
         nper_value = nper_value.toFixed(2);
-        document.getElementById("nperiods").value = nper_value;
+        document.getElementById("nperiods").value = Math.abs(nper_value);
     }
 }
 
@@ -65,6 +65,28 @@ function conv_number(expr, decplaces) {
     return (str.substring(0, decpoint) + "." + str.substring(decpoint, str.length));
 }
 
+/**
+ * @param  float $rate
+ * @param  int   $periods
+ * @param  float $present_value
+ * @param  float $future_value
+ *
+ * @return float
+ */
+function pmt() {
+
+    rate = parseFloat(document.getElementById("pay_rate").value);
+    periods = parseInt(document.getElementById("pay_periods").value);
+    present_value = parseFloat(document.getElementById("pay_present_value").value);
+    future_value = parseFloat(document.getElementById("pay_future_value").value);
+
+    if (rate == 0) {
+        return Math.abs(-(future_value + present_value) / periods);
+    }
+
+    return Math.abs(-(future_value + (present_value * Math.pow(1 + rate, periods))) /
+        ((1 + rate) / rate * (pow(1 + rate, periods) - 1)));
+}
 
 // /**
 //  * Used to calculate the number of periods
