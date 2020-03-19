@@ -78,16 +78,27 @@
         <article class="tips">
             <div>
                 <div class="info">
-                    <!-- <div class="info_header">
-                        <h2>Budgeting Tips & Tricks</h2>
+                    <div class="info_header">
+                        <h2>8 Ways to Keep Your Money Saving Goals in 2020</h2>
+                        <h3>by Lucy Maher</h3>
                     </div>
                     <picture class="info_image">
-                        <source media="(max-width: 400px)" srcset="/budget/images/budget_tips_350.jpg">
-                        <img title="Budget charts"  src="/budget/images/budget_tips_550.jpg" alt="Budget charts">
+                        <source media="(max-width: 400px)" srcset="/budget/images/sandy-millar-G-Aj03ckq0w-unsplash_350.jpg">
+                        <img title="Budget charts"  src="/budget/images/sandy-millar-G-Aj03ckq0w-unsplash_550.jpg" alt="Budget charts">
                     </picture>
                     <div class="info_text">
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                    </div> -->
+                        <ol>
+                            <li>Have a goal</li>
+                            <li>Track non-essential spending</li>
+                            <li>Get rid of high-interest debt</li>
+                            <li>Make it automatic</li>
+                            <li>Stick to the 24-hour rule</li>
+                            <li>Don't spend "found" money</li>
+                            <li>Consider accounts with tax benefits</li>
+                            <li>Don't go it alone</li>
+                        </ol>
+                        <p class="out_link"><a href="https://www.themuse.com/advice/money-saving-tips-new-year-2020" target="_blank">See Full Article</a></p>
+                    </div>
                 </div>
             </div>
         </article>

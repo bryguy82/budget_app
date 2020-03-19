@@ -57,17 +57,23 @@ if(!$_SESSION['loggedin']) {
                         <li>Email = <?php echo $_SESSION['userData']['userEmail']; ?></li>
                     </ul>
                 </div>
-                
 
                 <!-- Tables are displayed with this class <div class="box_1"> -->
                 <?php
-                    if (isset($saveTable)) {
-                        echo $saveTable;
+                    // SAVE
+                    if (isset($saveTable) || isset($spendTable) || isset($debtTable)) {
+                        if (isset($spendTable)) {
+                            echo $saveTable;
+                        }
+                        if (isset($spendTable)) {
+                            echo $spendTable;
+                        }
+                        if (isset($debtTable)) {
+                            echo $debtTable;
+                        }
                     } else {
-                        echo "<h3>Your save trackers will display here</h3>";
+                        echo "<h3>Your trackers will display here</h3>";
                     }
-
-                    // Add the tables for spend and debt here
                 ?>
                 
             </div>

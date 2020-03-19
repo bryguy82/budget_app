@@ -78,16 +78,29 @@
         <article class="tips">
             <div>
                 <div class="info">
-                    <!-- <div class="info_header">
-                        <h2>Budgeting Tips & Tricks</h2>
+                    <div class="info_header">
+                        <h2>10 Easy Ways to Pay Off Debt</h2>
+                        <h3>by Stephanie Steinberg and Susannah Snider</h3>
                     </div>
                     <picture class="info_image">
-                        <source media="(max-width: 400px)" srcset="/budget/images/budget_tips_350.jpg">
-                        <img title="Budget charts"  src="/budget/images/budget_tips_550.jpg" alt="Budget charts">
+                        <source media="(max-width: 400px)" srcset="/budget/images/bailing-adult-debt_350.jpg">
+                        <img title="Budget charts"  src="/budget/images/bailing-adult-debt_550.jpg" alt="Budget charts">
                     </picture>
                     <div class="info_text">
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                    </div> -->
+                        <ol>
+                            <li>Create a budget</li>
+                            <li>Pay off the most expensive debt first</li>
+                            <li>Pay more than the minimum balance</li>
+                            <li>Take advantage of balance transfers</li>
+                            <li>Halt your credit card spending</li>
+                            <li>Put work bonuses toward debt</li>
+                            <li>Delete credit card information from online stores</li>
+                            <li>Sell unwanted gifts and household items</li>
+                            <li>Change your habits</li>
+                            <li>Reward yourself when you reach milestones</li>
+                        </ol>
+                        <p class="out_link"><a href="https://money.usnews.com/money/personal-finance/debt/articles/easy-ways-to-pay-off-debt" target="_blank">See Full Article</a></p>
+                    </div>
                 </div>
             </div>
         </article>

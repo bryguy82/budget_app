@@ -78,16 +78,39 @@
         <article class="tips">
             <div>
                 <div class="info">
-                    <!-- <div class="info_header">
-                        <h2>Budgeting Tips & Tricks</h2>
+                    <div class="info_header">
+                        <h2>How to Stop Overspending & Get Your Budget Under Control</h2>
+                        <h3>by Jacqueline Curtis</h3>
                     </div>
                     <picture class="info_image">
-                        <source media="(max-width: 400px)" srcset="/budget/images/budget_tips_350.jpg">
-                        <img title="Budget charts"  src="/budget/images/budget_tips_550.jpg" alt="Budget charts">
+                        <source media="(max-width: 400px)" srcset="/budget/images/queens-Y7XjV7VSNTU-unsplash_350.jpg">
+                        <img title="Budget charts"  src="/budget/images/queens-Y7XjV7VSNTU-unsplash_550.jpg" alt="Budget charts">
                     </picture>
                     <div class="info_text">
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                    </div> -->
+                        <h4>Signs of Overspending</h4>
+                        <ol>
+                            <li>Your budget doesn’t add up</li>
+                            <li>Your credit cards are maxed</li>
+                            <li>You only pay your credit card minimum</li>
+                            <li>Your credit card debt exceeds your monthly income</li>
+                            <li>You splurge on fun stuff, but neglect bills and fixed expenses</li>
+                            <li>Your expenses rise with your income</li>
+                            <li>There’s more in your closet than in your bank account </li>
+                            <li>You’re resistant to change</li>
+                        </ol>
+                        <h4>How to Curb Overspending</h4>
+                        <ol>
+                            <li>Create abudget (or improve your existing budget)</li>
+                            <li>Switch to cash</li>
+                            <li>Forget your credit and debit card numbers</li>
+                            <li>Choose cheaper entertainment</li>
+                            <li>Set short-term financial goals</li>
+                            <li>Zero out your accounts</li>
+                            <li>Think context</li>
+                            <li>Reward yourself</li>
+                        </ol>
+                        <p class="out_link"><a href="https://www.moneycrashers.com/stop-overspending-budget-control/" target="_blank">See Full Article</a></p>
+                    </div>
                 </div>
             </div>
         </article>
