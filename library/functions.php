@@ -91,6 +91,7 @@ function buildDebtTrackers($trackerList){
 function buildSaveAdminTable($saveList) {
 
     $trackerTable = "<div class='box_1'>";
+    $trackerTable .= "<h2>Save Trackers</h2>";
     $trackerTable .= "<table>";
     $trackerTable .= "<tr>";
     $trackerTable .= "<th>Name</th>";
@@ -108,6 +109,32 @@ function buildSaveAdminTable($saveList) {
        $trackerTable .= "<td class='hide'>".$tracker['term']."</td>";
        $trackerTable .= "<td>$".$tracker['goal']."</td>";
        $trackerTable .= "<td><a href='/budget/saving/?action=ViewSave&trackerId=".urldecode($tracker['trackerId'])."'>View</a></td>";
+       $trackerTable .= "</tr>";    
+    }
+    $trackerTable .= "</table>";
+    $trackerTable .= "</div>";
+
+    return $trackerTable;
+}
+
+/**
+ * Table view for spend trackers on admin page
+ */
+function buildSpendAdminTable($spendList) {
+
+    $trackerTable = "<div class='box_1'>";
+    $trackerTable .= "<h2>Spend Trackers</h2>";
+    $trackerTable .= "<table>";
+    $trackerTable .= "<tr>";
+    $trackerTable .= "<th>Name</th>";
+    $trackerTable .= "<th>Goal</th>";
+    $trackerTable .= "<th>Tracker</th>";
+    $trackerTable .= "</tr>";
+    foreach ($spendList as $tracker) {
+       $trackerTable .= "<tr>";
+       $trackerTable .= "<td>".$tracker['trackerName']."</td>";
+       $trackerTable .= "<td>$".$tracker['spendingGoal']."</td>";
+       $trackerTable .= "<td><a href='/budget/spending/?action=ViewSpend&spendTrackerId=".urldecode($tracker['spendTrackerId'])."'>View</a></td>";
        $trackerTable .= "</tr>";    
     }
     $trackerTable .= "</table>";
