@@ -67,7 +67,7 @@ switch ($action){
         $trackerSource = getTrackerSourceByTrackerId($trackerId);
         $trackerName = $trackerSource['trackerName'];
 
-        if(!count($trackerData) && !count($trackerSource)){
+        if(!count($trackerData) && !($trackerSource)){
             $message = "<p class='notice'>Sorry, no tracker data could be found.</p>";
         } else {
             // build display for data
