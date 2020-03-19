@@ -11,6 +11,7 @@ require_once '../library/connection.php';
 require_once '../library/functions.php';
 require_once '../model/accounts-model.php';
 require_once '../model/save-model.php';
+require_once '../model/spend-model.php';
 
 
 $action = filter_input(INPUT_POST, 'action');
@@ -37,12 +38,24 @@ switch ($action){
 
     case 'admin':
 
+        // Get and set the tracker variables as a table
         $saveList = getSaveTrackers($_SESSION['userData']['userId'], $type_save);
-        if (sizeof($saveList) > 0) {
-            $saveTable = buildSaveAdminTable($saveList);
+        $spendList = getSpendTrackers($_SESSION['userData']['userId'], $type_spend);
+        // $debtList = getDebtTrackers($_SESSION['userData']['userId'], $type_debt);
+        if (sizeof($saveList) > 0 || sizeof($spendList) > 0 || sizeof($debtList) > 0) {
+            if (sizeof($saveList) > 0) {
+                $saveTable = buildSaveAdminTable($saveList);
+            }
+            if (sizeof($spendList) > 0) {
+                $spendTable = buildSpendAdminTable($spendList);
+            }
+            // if (sizeof($debtList) > 0) {
+            //     $debtTable = buildDebtAdminTable($debtList);
+            // }
             include '../view/admin.php';
             exit;
         }
+
         
         /**
          * ADD SPEND AND DEBT TABLE TRACKERS HERE
@@ -86,16 +99,26 @@ switch ($action){
         $_SESSION['userData'] = $userData;
         
         // Send them to the admin view
-        // Get and set the Save trackers variable as a table
+        // Get and set the tracker variables as a table
         $saveList = getSaveTrackers($_SESSION['userData']['userId'], $type_save);
-        if (sizeof($saveList) > 0) {
-            $saveTable = buildSaveAdminTable($saveList);
+        $spendList = getSpendTrackers($_SESSION['userData']['userId'], $type_spend);
+        // $debtList = getDebtTrackers($_SESSION['userData']['userId'], $type_debt);
+        if (sizeof($saveList) > 0 || sizeof($spendList) > 0 || sizeof($debtList) > 0) {
+            if (sizeof($saveList) > 0) {
+                $saveTable = buildSaveAdminTable($saveList);
+            }
+            if (sizeof($spendList) > 0) {
+                $spendTable = buildSpendAdminTable($spendList);
+            }
+            // if (sizeof($debtList) > 0) {
+            //     $debtTable = buildDebtAdminTable($debtList);
+            // }
             include '../view/admin.php';
             exit;
         }
 
         /**
-         * ADD SPEND AND DEBT TABLE TRACKERS HERE
+         * ADD DEBT TABLE TRACKER HERE
          */
             
         include '../view/admin.php';
