@@ -72,9 +72,9 @@ function buildDebtTrackers($trackerList){
         $trackerBoxes .= "<div class='box_1'>";
         $trackerBoxes .= "<a href='/budget/debt/?action=ViewDebt&trackerId=".urldecode($tracker['debtTrackerId'])."'>";
         // $trackerBoxes .= "<img src='/budget/images/travel-clipart-man_100.png' alt='Man with suitcase icon'>";
-        $trackerBoxes .= "<h2>".$tracker['trackerName']."</h2>";
+        $trackerBoxes .= "<h2>".$tracker['name']."</h2>";
         $trackerBoxes .= "<ul>";
-        $trackerBoxes .= "<li>Category: ".$tracker['trackerCategory']."</li>";
+        $trackerBoxes .= "<li>Category: ".$tracker['category']."</li>";
         $trackerBoxes .= "<li>Interest Rate: ".$tracker['interest']."</li>";
         $trackerBoxes .= "<li>Term: ".$tracker['term']." months</li>";
         $trackerBoxes .= "<li>Loan Value: $".$tracker['loanValue']."</li>";
@@ -183,9 +183,39 @@ function buildSpendData($trackerData) {
 }
 
 /**
+ * Table view for data in Debt tracker
+ */
+function buildDebtData($trackerData) {
+
+    $data = "";
+    foreach ($trackerData as $entry) {
+        $data .= "<tr>";
+        $data .= "<td>".$entry['saveDate']."</td>";
+        $data .= "<td>$".$entry['start']."</td>";
+        $data .= "<td class='hide'>$".$entry['deposit']."</td>";
+        $data .= "<td class='hide'>$".$entry['interestEarned']."</td>";
+        $data .= "<td>$".$entry['total']."</td>";
+        $data .= "</tr>";
+    }
+    
+    return $data;
+}
+
+/**
  * Calculate the interest earned and total for save entry
  */
 function calculateSaveEntry($start, $deposit, $interest) {
+
+    $earned = ($start + $deposit) * ($interest / 1200); // 5% -> .05/12
+    $total = $start + $deposit + $earned;
+
+    return array($earned, $total);
+}
+
+/**
+ * Calculate the interest earned and total for debt entry
+ */
+function calculateDebtEntry($start, $deposit, $interest) {
 
     $earned = ($start + $deposit) * ($interest / 1200); // 5% -> .05/12
     $total = $start + $deposit + $earned;
