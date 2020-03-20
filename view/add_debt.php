@@ -43,34 +43,30 @@
             <!-- Calculator for the number of periods -->
                 <div class="box_2">
                     <div>
-                        <h2>Number of Periods Calculator</h2>
+                        <h2>Monthly Payments Calculator</h2>
                         <p>If you have a goal value in mind, use this calculator to determine how long it will take to reach that dollar amount.</p>
                         <p>Enter in your bank's interest rate, the regular deposit amount, an initial value, and your desired future value.</p>
                         <p>* All values are required. *</p>
                     </div>
                     <fieldset class="calculate">
                         <label>
-                            Rate<span> *</span>
-                            <input type="number" name="rate" id="nrate" placeholder="5%" required>
+                            Interest Rate<span> *</span>
+                            <input type="number" name="rate" id="mrate" placeholder="5%" required>
                         </label>
                         <label>
-                            Payment Amount<span> *</span>
-                            <input type="number" name="payment" id="npayment" placeholder="-$100" required>
+                            Loan Term<span> *</span>
+                            <input type="number" name="term" id="mpayment" placeholder="60 months (5 years)" required>
                         </label>
                         <label>
-                            Starting Value<span> *</span>
-                            <input type="number" name="present_value" id="npresent_value" placeholder="$100000" required>
-                        </label>
-                        <label>
-                            Future Value<span> *</span>
-                            <input type="number" name="future_value" id="nfuture_value" placeholder="$0" required>
+                            Total Loan Value<span> *</span>
+                            <input type="number" name="loanvalue" id="mloanvalue" placeholder="$30000" required>
                         </label>
                         <div class="login_button">
-                            <button onclick="nper()">Get Total Periods</button>
+                            <button onclick="monPay()">Get Monthly Payment</button>
                         </div>
                         <label>
-                            Number of Periods
-                            <input type="number" name="periods" id="nperiods" readonly>
+                            Monthly Payment
+                            <input type="number" name="monthly" id="mmonthly" readonly>
                         </label>
                     </fieldset>
                 </div>
@@ -78,7 +74,7 @@
                  <!-- Calculator for Payment Amount -->
                  <div class="box_2">
                     <div>
-                        <h2>Payment Calculator</h2>
+                        <h2>Interest Calculator</h2>
                         <p>Before you get started, we suggest you use our handy calculators to help you with your goal.</p>
                         <p>This calculator will help you determine a payment amount for your loan.</p>
                         <p>Enter in your bank's interest rate, the time frame as number of periods, the regular payment amount, and an initial value.</p>
@@ -87,26 +83,22 @@
                     <fieldset class="calculate">
                         <label>
                             Rate<span> *</span>
-                            <input type="number" name="rate" id="pay_rate" placeholder="5%" required>
+                            <input type="number" name="rate" id="irate" placeholder="5%" required>
                         </label>
                         <label>
-                            Number of Periods<span> *</span>
-                            <input type="number" name="periods" id="pay_periods" placeholder="360 (30 years)" required>
+                            Loan Term<span> *</span>
+                            <input type="number" name="term" id="iterm" placeholder="360 (30 years)" required>
                         </label>
                         <label>
-                            Starting Value<span> *</span>
-                            <input type="number" name="present_value" id="pay_present_value" placeholder="$1000" required>
-                        </label>
-                        <label>
-                            Future Value<span> *</span>
-                            <input type="number" name="future_value" id="pay_future_value" placeholder="$0" required>
+                            Principal<span> *</span>
+                            <input type="number" name="principal" id="iprincipal" placeholder="$200000" required>
                         </label>
                         <div class="login_button">
-                            <button onclick="cal_FV()">Get Future Value</button>
+                            <button onclick="intCal()">Get Total Interest</button>
                         </div>
                         <label>
-                            Payment Amount
-                            <input type="number" name="payment" id="pay_payment" readonly>
+                            Total Interest
+                            <input type="number" name="interest" id="iinterest" readonly>
                         </label>
                     </fieldset>
                 </div>

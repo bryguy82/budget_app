@@ -63,19 +63,19 @@ switch ($action){
         $trackerId = filter_input(INPUT_GET, 'trackerId', FILTER_SANITIZE_NUMBER_INT);
 
         // Get tracker data
-        $trackerData = getSaveByTrackerId($trackerId);
-        $trackerSource = getTrackerSourceByTrackerId($trackerId);
-        $trackerName = $trackerSource['trackerName'];
+        $trackerData = getDebtByTrackerId($trackerId);
+        $trackerSource = getDebtTrackerSourceByTrackerId($trackerId);
+        $trackerName = $trackerSource['name'];
 
         if(!count($trackerData) && !($trackerSource)){
             $message = "<p class='notice'>Sorry, no tracker data could be found.</p>";
         } else {
             // build display for data
-            $trackerDisplay = buildSaveData($trackerData);
+            $trackerDisplay = buildDebtData($trackerData);
         }
 
         // Data to be viewed on this page
-        include '../view/view_save.php';
+        include '../view/view_debt.php';
         break;
 
     case 'DebtNewEntry':
@@ -87,7 +87,7 @@ switch ($action){
 
         if (empty($saveDate) || empty($start) || empty($deposit)) {
             $message = "<p>All input data must be completed.  Please try again.</p>";
-            include "../view/view_save.php";
+            include "../view/view_debt.php";
             exit;
         }
 
@@ -96,24 +96,24 @@ switch ($action){
         $saveDate = date("Y-m-d h:i:s", $d);
 
         // Get tracker startup data from tracker table (term, rate)
-        $trackerSource = getTrackerSourceByTrackerId($trackerId);
+        $trackerSource = getDebtTrackerSourceByTrackerId($trackerId);
         // $trackerSource['term']
         // $trackerSource['goal']
 
         // Function to calculate earned and total go here
-        list($earned, $total) = calculateSaveEntry($start, $deposit, $trackerSource['interest']);
+        list($earned, $total) = calculateDebtEntry($start, $deposit, $trackerSource['interest']);
 
         // Function to insert into DB here
-        $insertResult = insertSaveTracker($saveDate, $start, $deposit, $earned, $total, $trackerId);
+        $insertResult = insertDebtTracker($date, $initialPayment, $curPayment, $calInterest, $calcPrincipal, $curBalance, $totInterest, $trackerId);
 
         if ($insertResult === 1) {
             $message = "<p>Congratulations, your entry was successfully added.</p>";
-            header("Location: /budget/saving/?action=ViewSave&trackerId=".urldecode($trackerId));
+            header("Location: /budget/saving/?action=ViewDebt&trackerId=".urldecode($trackerId));
             // include "../view/manage_save.php";
             exit;
         } else {
             $message = "<p>Sorry, adding your tracker failed.  Please try again.</p>";
-            include "../view/view_save.php";
+            include "../view/view_debt.php";
             exit;
         }
         break;
@@ -126,7 +126,7 @@ switch ($action){
 
         if (empty($saveDate) || empty($deposit)) {
             $message = "<p>All input data must be completed.  Please try again.</p>";
-            include "../view/view_save.php";
+            include "../view/view_debt.php";
             exit;
         }
 
@@ -141,19 +141,19 @@ switch ($action){
         $startValue = getMaxStart($trackerId);
 
         // Function to calculate earned and total go here
-        list($earned, $total) = calculateSaveEntry($startValue['total'], $deposit, $trackerSource['interest']);
+        list($earned, $total) = calculateDebtEntry($startValue['total'], $deposit, $trackerSource['interest']);
 
         // Function to insert into DB here
-        $insertResult = insertSaveTracker($saveDate, $startValue['total'], $deposit, $earned, $total, $trackerId);
+        $insertResult = insertDebtTracker($date, $startValue['total'], $curPayment, $calInterest, $calcPrincipal, $curBalance, $totInterest, $trackerId);
 
         if ($insertResult === 1) {
             $message = "<p>Congratulations, your entry was successfully added.</p>";
-            header("Location: /budget/saving/?action=ViewSave&trackerId=".urldecode($trackerId));
+            header("Location: /budget/saving/?action=ViewDebt&trackerId=".urldecode($trackerId));
             // include "../view/manage_save.php";
             exit;
         } else {
             $message = "<p>Sorry, adding your tracker failed.  Please try again.</p>";
-            include "../view/view_save.php";
+            include "../view/view_debt.php";
             exit;
         }
         break;

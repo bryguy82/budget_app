@@ -43,11 +43,13 @@
                 <div class="box_1">
                     <table>
                         <tr>
-                            <th>Date</th>
-                            <th>Start</th>
-                            <th class='hide'>Deposit</th>
-                            <th class='hide'>Earned</th>
-                            <th>Total</th>
+                            <th>Month</th>
+                            <th>Total Payments</th>
+                            <th>Payment</th>
+                            <th>Interest</th>
+                            <th>Principle</th>
+                            <th>Remaining Balance</th>
+                            <th>Total Interest</th>
                         </tr>
 
                         <!-- Table data inserted here -->
@@ -63,7 +65,7 @@
                     <div>
                         <h3>Insert New Entry</h3>
                     </div>
-                    <form class="input" action="/budget/saving/index.php" method="post">
+                    <form class="input" action="/budget/debt/index.php" method="post">
                         <fieldset class="calculate">
 
                             <!-- Only first entry will include start value -->
