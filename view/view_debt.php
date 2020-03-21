@@ -78,16 +78,16 @@
                                     </label>
                                     <label>
                                         Starting Value<span> *</span>
-                                        <input type='number' name='start' placeholder='$1000' required>
+                                        <input type='number' name='initialPayment' placeholder='$1000' required>
                                     </label>
                                     <label>
                                         Deposit Amount<span> *</span>
-                                        <input type='number' name='deposit' placeholder='$100' required>
+                                        <input type='number' name='curPayment' placeholder='$100' required>
                                     </label>
                                     <div class='login_button'>
                                         <input type='submit' name='submit' value='Add New Entry'>
                                         <!-- Add the action key and value pair -->
-                                        <input type='hidden' name='action' value='SaveNewEntry'>
+                                        <input type='hidden' name='action' value='DebtNewEntry'>
                                         <input type='hidden' name='trackerId' value='";
                                             if (isset($tracker['trackerId'])) {echo $tracker['trackerId'];}
                                             elseif (isset($trackerId)) {echo $trackerId;}
@@ -101,12 +101,12 @@
                                     </label>
                                     <label>
                                         Deposit Amount<span> *</span>
-                                        <input type='number' name='deposit' placeholder='$100' required>
+                                        <input type='number' name='curPayment' placeholder='$100' required>
                                     </label>
                                     <div class='login_button'>
                                         <input type='submit' name='submit' value='Add New Entry'>
                                         <!-- Add the action key and value pair -->
-                                        <input type='hidden' name='action' value='SaveEntry'>
+                                        <input type='hidden' name='action' value='DebtEntry'>
                                         <input type='hidden' name='trackerId' value='";
                                             if (isset($tracker['trackerId'])) {echo $tracker['trackerId'];}
                                             elseif (isset($trackerId)) {echo $trackerId;}

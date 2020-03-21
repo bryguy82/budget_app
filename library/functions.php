@@ -190,11 +190,13 @@ function buildDebtData($trackerData) {
     $data = "";
     foreach ($trackerData as $entry) {
         $data .= "<tr>";
-        $data .= "<td>".$entry['saveDate']."</td>";
-        $data .= "<td>$".$entry['start']."</td>";
-        $data .= "<td class='hide'>$".$entry['deposit']."</td>";
-        $data .= "<td class='hide'>$".$entry['interestEarned']."</td>";
-        $data .= "<td>$".$entry['total']."</td>";
+        $data .= "<td>".$entry['date']."</td>";
+        $data .= "<td>$".$entry['initialPayment']."</td>";
+        $data .= "<td class='hide'>$".$entry['curPayment']."</td>";
+        $data .= "<td class='hide'>$".$entry['calcInterest']."</td>";
+        $data .= "<td>$".$entry['calcPrincipal']."</td>";
+        $data .= "<td>$".$entry['curBalance']."</td>";
+        $data .= "<td>$".$entry['totInterest']."</td>";
         $data .= "</tr>";
     }
     
@@ -215,12 +217,12 @@ function calculateSaveEntry($start, $deposit, $interest) {
 /**
  * Calculate the interest earned and total for debt entry
  */
-function calculateDebtEntry($start, $deposit, $interest) {
+function calculateDebtEntry($initialPayment, $curPayment, $interest) {
 
-    $earned = ($start + $deposit) * ($interest / 1200); // 5% -> .05/12
-    $total = $start + $deposit + $earned;
+    $calInterest = ($initialPayment + $curPayment) * ($interest / 1200); // 5% -> .05/12
+    $calcPrincipal = $curPayment - $calInterest;
 
-    return array($earned, $total);
+    return array($calInterest, $calcPrincipal);
 }
 
 

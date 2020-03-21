@@ -3,11 +3,11 @@
 /**
  * insert new tracker
  */
-function createDebtTracker($trackName, $trackCategory, $trackInterest, $trackTerm, $trackLoanValue, $userId){
+function createDebtTracker($trackName, $trackCategory, $trackRate, $trackTerm, $trackLoanValue, $userId){
 
     $db = dbConnect();
     $sql = 'INSERT INTO debttrackers (name, category, interest, term, loanValue, userId)
-            VALUES (:trackName, :trackCategory, :trackInterest, :trackTerm, :trackLoanValue, :userId)';
+            VALUES (:trackName, :trackCategory, :trackRate, :trackTerm, :trackLoanValue, :userId)';
 
     // Prepare statement using the db connection
     $stmt = $db->prepare($sql);
@@ -15,7 +15,7 @@ function createDebtTracker($trackName, $trackCategory, $trackInterest, $trackTer
     // Variable setters
     $stmt->bindValue(':trackName', $trackName, PDO::PARAM_STR);
     $stmt->bindValue(':trackCategory', $trackCategory, PDO::PARAM_STR);
-    $stmt->bindValue(':trackInterest', $trackInterest, PDO::PARAM_INT);
+    $stmt->bindValue(':trackRate', $trackRate, PDO::PARAM_INT);
     $stmt->bindValue(':trackTerm', $trackTerm, PDO::PARAM_INT);
     $stmt->bindValue(':trackLoanValue', $trackLoanValue, PDO::PARAM_INT);
     $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
@@ -43,7 +43,7 @@ function getDebtTrackers($userId) {
     return $userData;
 }
 
-// Get tracker saving table
+// Get tracker debt table
 function getDebtByTrackerId($debtTrackerId) {
 
     $db = dbConnect();
@@ -57,12 +57,12 @@ function getDebtByTrackerId($debtTrackerId) {
 }
 
 // Get tracker main data
-function getDebtTrackerSourceByTrackerId($trackerId) {
+function getDebtTrackerSourceByTrackerId($debtTrackerId) {
 /////////////////////////////////////////////////////////////
     $db = dbConnect();
     $sql = 'SELECT * FROM debttrackers WHERE debtTrackerId = :debtTrackerId';
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':debtTrackerId', $trackerId, PDO::PARAM_INT);
+    $stmt->bindValue(':debtTrackerId', $debtTrackerId, PDO::PARAM_INT);
     $stmt->execute();
     $trackerData = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
@@ -70,21 +70,21 @@ function getDebtTrackerSourceByTrackerId($trackerId) {
 }
 
 // Insert new row to debt table
-function insertDebtTracker($date, $initialPayment, $curPayment, $calInterest, $calcPrincipal, $curBalance, $totInterest, $trackerId) {
+function insertDebtTracker($saveDate, $initialPayment, $curPayment, $calcInterest, $calcPrincipal, $curBalance, $totInterest, $debtTrackerId) {
 /////////////////////////////////////////////////////////////
     $db = dbConnect();
 
-    $sql = 'INSERT INTO debt (date, initialPayment, curPayment, calInterest, calcPrincipal, curBalance, totInterest, debtTrackerId)
-            VALUES (:date, :initialPayment, :curPayment, :calInterest, :calcPrincipal, :curBalance, :totInterest, :debtTrackerId)';
+    $sql = 'INSERT INTO debt (date, initialPayment, curPayment, calcInterest, calcPrincipal, curBalance, totInterest, debtTrackerId)
+            VALUES (:saveDate, :initialPayment, :curPayment, :calcInterest, :calcPrincipal, :curBalance, :totInterest, :debtTrackerId)';
     
     // Prepare statement using the db connection
     $stmt = $db->prepare($sql);
 
     // Variable setters
-    $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+    $stmt->bindValue(':saveDate', $saveDate, PDO::PARAM_STR);
     $stmt->bindValue(':initialPayment', $initialPayment, PDO::PARAM_STR);
     $stmt->bindValue(':curPayment', $curPayment, PDO::PARAM_INT);
-    $stmt->bindValue(':calInterest', $calInterest, PDO::PARAM_INT);
+    $stmt->bindValue(':calcInterest', $calcInterest, PDO::PARAM_INT);
     $stmt->bindValue(':calcPrincipal', $calcPrincipal, PDO::PARAM_INT);
     $stmt->bindValue(':curBalance', $curBalance, PDO::PARAM_INT);
     $stmt->bindValue(':totInterest', $totInterest, PDO::PARAM_INT);
@@ -103,12 +103,27 @@ function insertDebtTracker($date, $initialPayment, $curPayment, $calInterest, $c
 /**
  * Get max total value from tracker
  */
-function getMaxStart($trackerId) {
+function getMaxStart($debtTrackerId) {
 /////////////////////////////////////////////////////////////
     $db = dbConnect();
-    $sql = 'SELECT MAX(initialPayment) AS total FROM debt WHERE trackerId = :trackerId';
+    $sql = 'SELECT MAX(initialPayment) AS total FROM debt WHERE debtTrackerId = :debtTrackerId';
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':trackerId', $trackerId, PDO::PARAM_INT);
+    $stmt->bindValue(':debtTrackerId', $debtTrackerId, PDO::PARAM_INT);
+    $stmt->execute();
+    $trackerData = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $trackerData;
+}
+
+/**
+ * Get max total value from tracker
+ */
+function getTotalInterest($debtTrackerId) {
+/////////////////////////////////////////////////////////////
+    $db = dbConnect();
+    $sql = 'SELECT MAX(totInterest) AS total FROM debt WHERE debtTrackerId = :debtTrackerId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':debtTrackerId', $debtTrackerId, PDO::PARAM_INT);
     $stmt->execute();
     $trackerData = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
