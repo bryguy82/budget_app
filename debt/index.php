@@ -45,7 +45,7 @@ switch ($action){
         }
 
         // Insert data into the database
-        $insertResult = createDebtTracker($name, $type, $category, $rate, $term, $loanValue, $userId);
+        $insertResult = createDebtTracker($name, $category, $rate, $term, $loanValue, $userId);
 
         if ($insertResult === 1) {
             $message = "<p>Congratulations, your debt tracker was successfully added.</p>";
@@ -82,10 +82,10 @@ switch ($action){
 //////////////////////////////////////////////////////////
         $trackerId = filter_input(INPUT_POST, 'trackerId', FILTER_SANITIZE_NUMBER_INT);
         $saveDate = filter_input(INPUT_POST, 'saveDate', FILTER_SANITIZE_STRING);
-        $start = filter_input(INPUT_POST, 'start', FILTER_SANITIZE_NUMBER_INT);
-        $deposit = filter_input(INPUT_POST, 'deposit', FILTER_SANITIZE_NUMBER_INT);
+        $initialPayment = filter_input(INPUT_POST, 'initialPayment', FILTER_SANITIZE_NUMBER_INT);
+        $curPayment = filter_input(INPUT_POST, 'curPayment', FILTER_SANITIZE_NUMBER_INT);
 
-        if (empty($saveDate) || empty($start) || empty($deposit)) {
+        if (empty($saveDate) || empty($initialPayment) || empty($curPayment)) {
             $message = "<p>All input data must be completed.  Please try again.</p>";
             include "../view/view_debt.php";
             exit;
@@ -101,14 +101,17 @@ switch ($action){
         // $trackerSource['goal']
 
         // Function to calculate earned and total go here
-        list($earned, $total) = calculateDebtEntry($start, $deposit, $trackerSource['interest']);
+        list($calcInterest, $calcPrincipal) = calculateDebtEntry($initialPayment, $curPayment, $trackerSource['interest']);
+        $curBalance = $initialPayment - $calcPrincipal;
+        $maxInterest = getTotalInterest($trackerId);
+        $totInterest = $maxInterest['total'] + $calcInterest;
 
         // Function to insert into DB here
-        $insertResult = insertDebtTracker($date, $initialPayment, $curPayment, $calInterest, $calcPrincipal, $curBalance, $totInterest, $trackerId);
+        $insertResult = insertDebtTracker($saveDate, $initialPayment, $curPayment, $calcInterest, $calcPrincipal, $curBalance, $totInterest, $trackerId);
 
         if ($insertResult === 1) {
             $message = "<p>Congratulations, your entry was successfully added.</p>";
-            header("Location: /budget/saving/?action=ViewDebt&trackerId=".urldecode($trackerId));
+            header("Location: /budget/debt/?action=ViewDebt&trackerId=".urldecode($trackerId));
             // include "../view/manage_save.php";
             exit;
         } else {
@@ -122,9 +125,9 @@ switch ($action){
 /////////////////////////////////////////////////////////
         $trackerId = filter_input(INPUT_POST, 'trackerId', FILTER_SANITIZE_NUMBER_INT);
         $saveDate = filter_input(INPUT_POST, 'saveDate', FILTER_SANITIZE_STRING);
-        $deposit = filter_input(INPUT_POST, 'deposit', FILTER_SANITIZE_NUMBER_INT);
+        $curPayment = filter_input(INPUT_POST, 'curPayment', FILTER_SANITIZE_NUMBER_INT);
 
-        if (empty($saveDate) || empty($deposit)) {
+        if (empty($saveDate) || empty($curPayment)) {
             $message = "<p>All input data must be completed.  Please try again.</p>";
             include "../view/view_debt.php";
             exit;
@@ -135,20 +138,24 @@ switch ($action){
         $saveDate = date("Y-m-d h:i:s", $d);
 
         // Get tracker startup data from tracker table (term, rate)
-        $trackerSource = getTrackerSourceByTrackerId($trackerId);
+        $trackerSource = getDebtTrackerSourceByTrackerId($trackerId);
         // $trackerSource['term']
         // $trackerSource['goal']
         $startValue = getMaxStart($trackerId);
+        $maxInterest = getTotalInterest($trackerId);
 
         // Function to calculate earned and total go here
-        list($earned, $total) = calculateDebtEntry($startValue['total'], $deposit, $trackerSource['interest']);
+        list($calcInterest, $calcPrincipal) = calculateDebtEntry($startValue['total'], $curPayment, $trackerSource['interest']);
+        $curBalance = $startValue['total'] - $calcPrincipal;
+        $totInterest = $maxInterest['total'] + $calcInterest;
+        $initialPayment = $startValue['total'] + $curPayment;
 
         // Function to insert into DB here
-        $insertResult = insertDebtTracker($date, $startValue['total'], $curPayment, $calInterest, $calcPrincipal, $curBalance, $totInterest, $trackerId);
+        $insertResult = insertDebtTracker($saveDate, $initialPayment, $curPayment, $calcInterest, $calcPrincipal, $curBalance, $totInterest, $trackerId);
 
         if ($insertResult === 1) {
             $message = "<p>Congratulations, your entry was successfully added.</p>";
-            header("Location: /budget/saving/?action=ViewDebt&trackerId=".urldecode($trackerId));
+            header("Location: /budget/debt/?action=ViewDebt&trackerId=".urldecode($trackerId));
             // include "../view/manage_save.php";
             exit;
         } else {
