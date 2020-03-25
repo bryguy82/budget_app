@@ -50,12 +50,10 @@ if(!$_SESSION['loggedin']) {
             <div>
             <!-- Form to create a tracker -->
                 <div class="box_2">
-                    <!-- <div>
-                        <h2>Start your Savings Tracker</h2>
-                        <p>Now that you've had a chance to select your parameters, let us help you reach your goal!</p>
-                        <p>Enter in the following data to get started!</p>
+                    <div>
+                        <h2>Update User Data</h2>
                         <p>* All values are required. *</p>
-                    </div> -->
+                    </div>
                     <form class="login input" action="/budget/accounts/index.php" method="post">
                         <fieldset>
                             <label>
@@ -106,9 +104,7 @@ if(!$_SESSION['loggedin']) {
             <!-- Form to create a tracker -->
                 <div class="box_2">
                     <div>
-                        <h2>Start your Savings Tracker</h2>
-                        <p>Now that you've had a chance to select your parameters, let us help you reach your goal!</p>
-                        <p>Enter in the following data to get started!</p>
+                        <h2>Update Password</h2>
                         <p>* All values are required. *</p>
                     </div>
                     <form class="login input" action="/budget/accounts/index.php" method="post">
