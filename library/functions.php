@@ -108,7 +108,12 @@ function buildSaveAdminTable($saveList) {
        $trackerTable .= "<td class='hide'>".$tracker['interest']." %</td>";
        $trackerTable .= "<td class='hide'>".$tracker['term']."</td>";
        $trackerTable .= "<td>$".$tracker['goal']."</td>";
-       $trackerTable .= "<td><a href='/budget/saving/?action=ViewSave&trackerId=".urldecode($tracker['trackerId'])."'>View</a></td>";
+       $trackerTable .= 
+         "<td>
+            <a href='/budget/saving/?action=ViewSave&trackerId=".urldecode($tracker['trackerId'])."'>View</a> |
+            <a href='/budget/accounts/?action=DeleteSave&trackerId=".urldecode($tracker['trackerId'])
+            ."&trackerName=".$tracker['trackerName']."'><span class='warning'>Delete</span></a>
+         </td>";
        $trackerTable .= "</tr>";    
     }
     $trackerTable .= "</table>";
@@ -134,7 +139,49 @@ function buildSpendAdminTable($spendList) {
        $trackerTable .= "<tr>";
        $trackerTable .= "<td>".$tracker['trackerName']."</td>";
        $trackerTable .= "<td>$".$tracker['spendingGoal']."</td>";
-       $trackerTable .= "<td><a href='/budget/spending/?action=ViewSpend&spendTrackerId=".urldecode($tracker['spendTrackerId'])."'>View</a></td>";
+       $trackerTable .= 
+         "<td>
+           <a href='/budget/spending/?action=ViewSpend&spendTrackerId=".urldecode($tracker['spendTrackerId'])."'>View</a> |
+           <a href='/budget/accounts/?action=DeleteSpend&trackerId=".urldecode($tracker['spendTrackerId'])
+           ."&trackerName=".$tracker['trackerName']."'><span class='warning'>Delete</span></a>
+          </td>";
+       $trackerTable .= "</tr>";    
+    }
+    $trackerTable .= "</table>";
+    $trackerTable .= "</div>";
+
+    return $trackerTable;
+}
+
+/**
+ * Table view for spend trackers on admin page
+ */
+function buildDebtAdminTable($debtList) {
+
+    $trackerTable = "<div class='box_1'>";
+    $trackerTable .= "<h2>Debt Trackers</h2>";
+    $trackerTable .= "<table>";
+    $trackerTable .= "<tr>";
+    $trackerTable .= "<th>Name</th>";
+    $trackerTable .= "<th class='hide'>Category</th>";
+    $trackerTable .= "<th class='hide'>Interest Rate</th>";
+    $trackerTable .= "<th class='hide'>Term</th>";
+    $trackerTable .= "<th>Loan Value</th>";
+    $trackerTable .= "<th>Tracker</th>";
+    $trackerTable .= "</tr>";
+    foreach ($debtList as $tracker) {
+       $trackerTable .= "<tr>";
+       $trackerTable .= "<td>".$tracker['name']."</td>";
+       $trackerTable .= "<td class='hide'>".$tracker['category']."</td>";
+       $trackerTable .= "<td class='hide'>".$tracker['interest']." %</td>";
+       $trackerTable .= "<td class='hide'>".$tracker['term']."</td>";
+       $trackerTable .= "<td>$".$tracker['loanValue']."</td>";
+       $trackerTable .= 
+         "<td>
+            <a href='/budget/debt/?action=ViewDebt&trackerId=".urldecode($tracker['debtTrackerId'])."'>View</a> |
+            <a href='/budget/accounts/?action=DeleteDebt&trackerId=".urldecode($tracker['debtTrackerId'])
+            ."&trackerName=".$tracker['name']."'><span class='warning'>Delete</span></a>
+         </td>";
        $trackerTable .= "</tr>";    
     }
     $trackerTable .= "</table>";
@@ -146,7 +193,7 @@ function buildSpendAdminTable($spendList) {
 /**
  * Table view for data in Save tracker
  */
-function buildSaveData($trackerData) {
+function buildSaveData($trackerData, $goal=NULL) {
 
     $data = "";
     foreach ($trackerData as $entry) {
@@ -158,14 +205,23 @@ function buildSaveData($trackerData) {
         $data .= "<td>$".$entry['total']."</td>";
         $data .= "</tr>";
     }
-    
+    if($goal != NULL) {
+        $data .= "<tr>";
+        $data .= "<td>Amount</td>";
+        $data .= "<td>to go:</td>";
+        $data .= "<td class='hide'></td>";
+        $data .= "<td class='hide'></td>";
+        $data .= "<td>$".$goal."</td>";
+        $data .= "</tr>";
+    }
+
     return $data;
 }
 
 /**
  * Table view for data in Spend tracker
  */
-function buildSpendData($trackerData) {
+function buildSpendData($trackerData, $remaining = NULL) {
 
     $data = "";
     foreach ($trackerData as $entry) {
@@ -176,6 +232,16 @@ function buildSpendData($trackerData) {
         $data .= "<td class='hide'>$".$entry['start']."</td>";
         $data .= "<td class='hide'>$".$entry['spendAmount']."</td>";
         $data .= "<td>$".$entry['total']."</td>";
+        $data .= "</tr>";
+    }
+    if($remaining != NULL) {
+        $data .= "<tr>";
+        $data .= "<td>Budget</td>";
+        $data .= "<td>remaining:</td>";
+        $data .= "<td class='hide'></td>";
+        $data .= "<td class='hide'></td>";
+        $data .= "<td class='hide'></td>";
+        $data .= "<td>$".$remaining."</td>";
         $data .= "</tr>";
     }
 
@@ -191,7 +257,7 @@ function buildDebtData($trackerData) {
     foreach ($trackerData as $entry) {
         $data .= "<tr>";
         $data .= "<td>".$entry['date']."</td>";
-        $data .= "<td>$".$entry['initialPayment']."</td>";
+        $data .= "<td>$".$entry['start']."</td>";
         $data .= "<td class='hide'>$".$entry['curPayment']."</td>";
         $data .= "<td class='hide'>$".$entry['calcInterest']."</td>";
         $data .= "<td>$".$entry['calcPrincipal']."</td>";
@@ -217,9 +283,9 @@ function calculateSaveEntry($start, $deposit, $interest) {
 /**
  * Calculate the interest earned and total for debt entry
  */
-function calculateDebtEntry($initialPayment, $curPayment, $interest) {
+function calculateDebtEntry($start, $curPayment, $interest) {
 
-    $calInterest = ($initialPayment + $curPayment) * ($interest / 1200); // 5% -> .05/12
+    $calInterest = $start * ($interest / 1200); // 5% -> .05/12
     $calcPrincipal = $curPayment - $calInterest;
 
     return array($calInterest, $calcPrincipal);

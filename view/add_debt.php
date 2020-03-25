@@ -19,7 +19,7 @@
         <div class="hero">
             <div>
                 <div class="page_title">
-                    <h1><?php if (isset($trackerName)) {echo $trackerName;} ?> Table</h1>
+                    <h1>Create Debt Tracker</h1>
                 </div>
                 <!-- <picture class="hero_image">
                     <source media="(max-width: 400px)" srcset="/budget/images/micheile-henderson-ZVprbBmT8QA-unsplash_400.jpg">
@@ -40,65 +40,68 @@
 
         <div class="trackers">
             <div>
-            <!-- Calculator for the number of periods -->
+                 <!-- Calculator for Payment Amount -->
                 <div class="box_2">
                     <div>
                         <h2>Monthly Payments Calculator</h2>
-                        <p>If you have a goal value in mind, use this calculator to determine how long it will take to reach that dollar amount.</p>
-                        <p>Enter in your bank's interest rate, the regular deposit amount, an initial value, and your desired future value.</p>
+                        <p>Use this calculator to determine the payment dollar amount.</p>
+                        <p>Enter in your bank's interest rate, the number of periods, and the loan value.</p>
                         <p>* All values are required. *</p>
                     </div>
                     <fieldset class="calculate">
                         <label>
                             Interest Rate<span> *</span>
-                            <input type="number" name="rate" id="mrate" placeholder="5%" required>
+                            <input type="number" name="rate" id="rate" placeholder="5%" required>
                         </label>
                         <label>
                             Loan Term<span> *</span>
-                            <input type="number" name="term" id="mpayment" placeholder="60 months (5 years)" required>
+                            <input type="number" name="periods" id="periods" placeholder="60 months (5 years)" required>
                         </label>
                         <label>
                             Total Loan Value<span> *</span>
-                            <input type="number" name="loanvalue" id="mloanvalue" placeholder="$30000" required>
+                            <input type="number" name="loanValue" id="loanValue" placeholder="$30000" required>
                         </label>
                         <div class="login_button">
-                            <button onclick="monPay()">Get Monthly Payment</button>
+                            <button onclick="payments()">Get Monthly Payment</button>
                         </div>
                         <label>
                             Monthly Payment
-                            <input type="number" name="monthly" id="mmonthly" readonly>
+                            <input type="number" name="payment" id="payment" readonly>
                         </label>
                     </fieldset>
                 </div>
 
-                 <!-- Calculator for Payment Amount -->
-                 <div class="box_2">
+                <!-- Calculator for the number of periods -->
+                <div class="box_2">
                     <div>
-                        <h2>Interest Calculator</h2>
-                        <p>Before you get started, we suggest you use our handy calculators to help you with your goal.</p>
-                        <p>This calculator will help you determine a payment amount for your loan.</p>
-                        <p>Enter in your bank's interest rate, the time frame as number of periods, the regular payment amount, and an initial value.</p>
+                        <h2>Number of Periods Calculator</h2>
+                        <p>Use this calculator to determine how long it will take to reach a dollar amount.</p>
+                        <p>Enter in your bank's interest rate, the regular payment amount, the starting value, and your desired future value.</p>
                         <p>* All values are required. *</p>
                     </div>
                     <fieldset class="calculate">
                         <label>
                             Rate<span> *</span>
-                            <input type="number" name="rate" id="irate" placeholder="5%" required>
+                            <input type="number" name="rate" id="nrate" placeholder="5%" required>
                         </label>
                         <label>
-                            Loan Term<span> *</span>
-                            <input type="number" name="term" id="iterm" placeholder="360 (30 years)" required>
+                            Payment Amount<span> *</span>
+                            <input type="number" name="payment" id="npayment" placeholder="$100" required>
                         </label>
                         <label>
-                            Principal<span> *</span>
-                            <input type="number" name="principal" id="iprincipal" placeholder="$200000" required>
+                            Starting Value<span> *</span>
+                            <input type="number" name="present_value" id="npresent_value" placeholder="$1000" required>
+                        </label>
+                        <label>
+                            Future Value<span> *</span>
+                            <input type="number" name="future_value" id="nfuture_value" placeholder="$0" required>
                         </label>
                         <div class="login_button">
-                            <button onclick="intCal()">Get Total Interest</button>
+                            <button onclick="nper()">Get Total Periods</button>
                         </div>
                         <label>
-                            Total Interest
-                            <input type="number" name="interest" id="iinterest" readonly>
+                            Number of Periods
+                            <input type="number" name="periods" id="nperiods" readonly>
                         </label>
                     </fieldset>
                 </div>
@@ -119,7 +122,7 @@
                         <fieldset>
                             <label>
                                 Tracker Name<span> *</span>
-                                <input type="text" name="name" placeholder="My Vacation" required>
+                                <input type="text" name="name" placeholder="My Mortgage" required>
                             </label>
                             <label>
                                 Loan Category<span> *</span>

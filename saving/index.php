@@ -71,7 +71,9 @@ switch ($action){
             $message = "<p class='notice'>Sorry, no tracker data could be found.</p>";
         } else {
             // build display for data
-            $trackerDisplay = buildSaveData($trackerData);
+            $maxTotal = getMaxStart($trackerId);
+            $goal = $trackerSource['goal'] - $maxTotal['total'];
+            $trackerDisplay = buildSaveData($trackerData, $goal);
         }
 
         // Data to be viewed on this page

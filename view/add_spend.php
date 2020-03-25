@@ -19,7 +19,7 @@
         <div class="hero">
             <div>
                 <div class="page_title">
-                    <h1><?php if (isset($trackerName)) {echo $trackerName;} ?> Table</h1>
+                    <h1>Create Spending Tracker</h1>
                 </div>
                 <!-- <picture class="hero_image">
                     <source media="(max-width: 400px)" srcset="/budget/images/micheile-henderson-ZVprbBmT8QA-unsplash_400.jpg">
@@ -44,7 +44,6 @@
                 <div class="box_2">
                     <div>
                         <h2>Start your Spending Tracker</h2>
-                        <p>Now that you've had a chance to select your parameters, let us help you reach your goal!</p>
                         <p>Enter in the following data to get started!</p>
                         <p>* All values are required. *</p>
                     </div>

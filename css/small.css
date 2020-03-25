@@ -121,6 +121,10 @@ div.abutton a,
 div.tracker_link a {
     color: #000000;
     text-decoration: none;
+    padding: 1em;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, .5);
+    box-shadow: 0px 5px 5px #808080;
 }
 
 div.abutton a:visited {
@@ -138,6 +142,10 @@ nav button {
 
 div.nav li.logout img {
     height: 50px;
+}
+
+div h3#display {
+    margin: 3em;
 }
 
 /*-----------------------------------------------------*/
@@ -293,18 +301,6 @@ div.tracker_link {
     display: grid;
     justify-content: center;
     align-items: center;
-    height: 48px;
-    max-width: 80%;
-    font-size: 17px;
-    margin: 1em auto;
-    border-radius: 10px;
-    background-color: rgba(128, 128, 128, .5);
-    box-shadow: 0px 5px 5px #808080;
-}
-
-div.abutton a {
-    padding: .8em 0;
-    width: 100%;
 }
 
 div.register {
@@ -322,6 +318,10 @@ p.out_link a {
     color: #517592;
 }
 
+/*-----------------------------------------------------*/
+div.box_1 a span.warning {
+    color: red;
+}
 
 /*-----------------------------------------------------*/
 footer {

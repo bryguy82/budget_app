@@ -37,9 +37,9 @@ function cal_FV() {
  * @param {Future value} fv 
  */
 function nper() {
-    rate = parseFloat(document.getElementById("nrate").value);
+    rate = parseFloat(document.getElementById("nrate").value) / 12;
     fv = parseFloat(document.getElementById("nfuture_value").value);
-    pmt = -parseFloat(document.getElementById("npayment").value);
+    pmt = parseFloat(document.getElementById("npayment").value);
     pv = parseFloat(document.getElementById("npresent_value").value);
     // per = parseFloat(document.getElementById("").value);
     if (pmt == 0) {
@@ -56,37 +56,6 @@ function nper() {
     }
 }
 
-function conv_number(expr, decplaces) {
-    var str = "" + Math.round(eval(expr) * Math.pow(10, decplaces));
-    while (str.length <= decplaces) {
-        str = "0" + str;
-    }
-    var decpoint = str.length - decplaces;
-    return (str.substring(0, decpoint) + "." + str.substring(decpoint, str.length));
-}
-
-/**
- * @param  float $rate
- * @param  int   $periods
- * @param  float $present_value
- * @param  float $future_value
- *
- * @return float
- */
-function pmt() {
-
-    rate = parseFloat(document.getElementById("pay_rate").value);
-    periods = parseInt(document.getElementById("pay_periods").value);
-    present_value = parseFloat(document.getElementById("pay_present_value").value);
-    future_value = parseFloat(document.getElementById("pay_future_value").value);
-
-    if (rate == 0) {
-        return Math.abs(-(future_value + present_value) / periods);
-    }
-
-    return Math.abs(-(future_value + (present_value * Math.pow(1 + rate, periods))) /
-        ((1 + rate) / rate * (pow(1 + rate, periods) - 1)));
-}
 
 // /**
 //  * Used to calculate the number of periods
@@ -99,3 +68,27 @@ function pmt() {
 //     $initial = $payment * (1.0 + $rate * $when);
 //     return log(($initial - $future_value * $rate) / ($initial + $present_value * $rate)) / log(1.0 + $rate);
 // }
+
+/**
+ * @param  float $rate
+ * @param  int   $periods
+ * @param  float $present_value
+ * @param  float $future_value
+ *
+ * @return float
+ */
+function payments() {
+
+    rate = parseFloat(document.getElementById("rate").value) / 1200;
+    periods = parseInt(document.getElementById("periods").value);
+    present_value = parseFloat(document.getElementById("loanValue").value);
+    future_value = 0;
+
+    if (rate == 0) {
+        num_periods = -(future_value + present_value) / periods;
+    } else {
+        num_periods = -(future_value + (present_value * Math.pow(1 + rate, periods))) /
+            ((1 + rate) / rate * (Math.pow(1 + rate, periods) - 1));
+    }
+    document.getElementById("payment").value = num_periods;
+}

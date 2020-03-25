@@ -129,4 +129,40 @@ function getUserById($userId){
     return $rowsChanged;
 }
 
+function deleteSave($trackerId) {
+
+    $db = dbConnect(); 
+    $sql = 'DELETE FROM trackers WHERE trackerId = :trackerId'; 
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':trackerId', $trackerId, PDO::PARAM_INT); 
+    $stmt->execute(); 
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor(); 
+    return $rowsChanged;
+}
+
+function deleteSpend($trackerId) {
+
+    $db = dbConnect(); 
+    $sql = 'DELETE FROM spendtrackers WHERE spendTrackerId = :spendTrackerId'; 
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':spendTrackerId', $trackerId, PDO::PARAM_INT); 
+    $stmt->execute(); 
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor(); 
+    return $rowsChanged;
+}
+
+function deleteDebt($trackerId) {
+
+    $db = dbConnect(); 
+    $sql = 'DELETE FROM debttrackers WHERE debtTrackerId = :debtTrackerId'; 
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':debtTrackerId', $trackerId, PDO::PARAM_INT); 
+    $stmt->execute(); 
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor(); 
+    return $rowsChanged;
+}
+
 ?>

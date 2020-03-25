@@ -44,7 +44,7 @@
                     <table>
                         <tr>
                             <th>Month</th>
-                            <th>Total Payments</th>
+                            <th>Start</th>
                             <th>Payment</th>
                             <th>Interest</th>
                             <th>Principle</th>
@@ -73,15 +73,11 @@
                                 if (count($trackerData) == 0) {
                                     echo 
                                     "<label>
-                                        Deposit Date<span> *</span>
+                                        Payment Date<span> *</span>
                                         <input type='date' name='saveDate' required>
                                     </label>
                                     <label>
-                                        Starting Value<span> *</span>
-                                        <input type='number' name='initialPayment' placeholder='$1000' required>
-                                    </label>
-                                    <label>
-                                        Deposit Amount<span> *</span>
+                                        Payment Amount<span> *</span>
                                         <input type='number' name='curPayment' placeholder='$100' required>
                                     </label>
                                     <div class='login_button'>
@@ -96,11 +92,11 @@
                                 } elseif (count($trackerData) > 0) {
                                     echo
                                     "<label>
-                                        Deposit Date<span> *</span>
+                                        Payment Date<span> *</span>
                                         <input type='date' name='saveDate' required>
                                     </label>
                                     <label>
-                                        Deposit Amount<span> *</span>
+                                        Payment Amount<span> *</span>
                                         <input type='number' name='curPayment' placeholder='$100' required>
                                     </label>
                                     <div class='login_button'>

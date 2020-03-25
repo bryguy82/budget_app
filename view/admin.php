@@ -5,7 +5,6 @@ if(!$_SESSION['loggedin']) {
     exit;
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
@@ -58,11 +57,15 @@ if(!$_SESSION['loggedin']) {
                     </ul>
                 </div>
 
+                <div class="tracker_link">
+                    <p><a href="../accounts/?action=updateAccount">Update Account Information</a></p>
+                </div>
+
                 <!-- Tables are displayed with this class <div class="box_1"> -->
                 <?php
                     // SAVE
                     if (isset($saveTable) || isset($spendTable) || isset($debtTable)) {
-                        if (isset($spendTable)) {
+                        if (isset($saveTable)) {
                             echo $saveTable;
                         }
                         if (isset($spendTable)) {
@@ -72,7 +75,7 @@ if(!$_SESSION['loggedin']) {
                             echo $debtTable;
                         }
                     } else {
-                        echo "<h3>Your trackers will display here</h3>";
+                        echo "<h3 id=display>Your trackers will display here</h3>";
                     }
                 ?>
                 

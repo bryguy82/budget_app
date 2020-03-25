@@ -90,7 +90,7 @@
                         </label>
                         <label>
                             Starting Value<span> *</span>
-                            <input type="number" name="present_value" id="npresent_value" placeholder="$1000" required>
+                            <input type="number" name="present_value" id="npresent_value" placeholder="-$1000 (negative)" required>
                         </label>
                         <label>
                             Future Value<span> *</span>

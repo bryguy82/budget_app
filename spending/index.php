@@ -67,8 +67,11 @@ switch ($action){
         if(!count($trackerData) && !($trackerSource)){
             $message = "<p class='notice'>Sorry, no tracker data could be found.</p>";
         } else {
+            // Display the budget amount remaining 
+            $maxTotal = getMaxSpendStart($spendTrackerId);
+            $budgetLeft = $trackerSource['spendingGoal'] - $maxTotal['total'];
             // build display for data
-            $trackerDisplay = buildSpendData($trackerData);
+            $trackerDisplay = buildSpendData($trackerData, $budgetLeft);
         }
 
         // Data to be viewed on this page
@@ -135,7 +138,7 @@ switch ($action){
         $spendDate = date("Y-m-d h:i:s", $d);
 
         // Get tracker startup data from tracker table (spendingGoal)
-        $trackerSource = getSpendTrackerSourceByTrackerId($spendTrackerId);/////////////////////////////////display goal amount
+        $trackerSource = getSpendTrackerSourceByTrackerId($spendTrackerId);
 
         $startValue = getMaxSpendStart($spendTrackerId);
 

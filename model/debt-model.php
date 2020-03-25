@@ -70,19 +70,19 @@ function getDebtTrackerSourceByTrackerId($debtTrackerId) {
 }
 
 // Insert new row to debt table
-function insertDebtTracker($saveDate, $initialPayment, $curPayment, $calcInterest, $calcPrincipal, $curBalance, $totInterest, $debtTrackerId) {
+function insertDebtTracker($saveDate, $start, $curPayment, $calcInterest, $calcPrincipal, $curBalance, $totInterest, $debtTrackerId) {
 /////////////////////////////////////////////////////////////
     $db = dbConnect();
 
-    $sql = 'INSERT INTO debt (date, initialPayment, curPayment, calcInterest, calcPrincipal, curBalance, totInterest, debtTrackerId)
-            VALUES (:saveDate, :initialPayment, :curPayment, :calcInterest, :calcPrincipal, :curBalance, :totInterest, :debtTrackerId)';
+    $sql = 'INSERT INTO debt (date, start, curPayment, calcInterest, calcPrincipal, curBalance, totInterest, debtTrackerId)
+            VALUES (:saveDate, :start, :curPayment, :calcInterest, :calcPrincipal, :curBalance, :totInterest, :debtTrackerId)';
     
     // Prepare statement using the db connection
     $stmt = $db->prepare($sql);
 
     // Variable setters
     $stmt->bindValue(':saveDate', $saveDate, PDO::PARAM_STR);
-    $stmt->bindValue(':initialPayment', $initialPayment, PDO::PARAM_STR);
+    $stmt->bindValue(':start', $start, PDO::PARAM_STR);
     $stmt->bindValue(':curPayment', $curPayment, PDO::PARAM_INT);
     $stmt->bindValue(':calcInterest', $calcInterest, PDO::PARAM_INT);
     $stmt->bindValue(':calcPrincipal', $calcPrincipal, PDO::PARAM_INT);
@@ -103,10 +103,10 @@ function insertDebtTracker($saveDate, $initialPayment, $curPayment, $calcInteres
 /**
  * Get max total value from tracker
  */
-function getMaxStart($debtTrackerId) {
+function getMinStart($debtTrackerId) {
 /////////////////////////////////////////////////////////////
     $db = dbConnect();
-    $sql = 'SELECT MAX(initialPayment) AS total FROM debt WHERE debtTrackerId = :debtTrackerId';
+    $sql = 'SELECT MIN(curBalance) AS total FROM debt WHERE debtTrackerId = :debtTrackerId';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':debtTrackerId', $debtTrackerId, PDO::PARAM_INT);
     $stmt->execute();
