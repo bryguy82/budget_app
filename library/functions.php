@@ -260,7 +260,7 @@ function buildDebtData($trackerData) {
         $data .= "<td>$".$entry['start']."</td>";
         $data .= "<td class='hide'>$".$entry['curPayment']."</td>";
         $data .= "<td class='hide'>$".$entry['calcInterest']."</td>";
-        $data .= "<td>$".$entry['calcPrincipal']."</td>";
+        $data .= "<td class='hide'>$".$entry['calcPrincipal']."</td>";
         $data .= "<td>$".$entry['curBalance']."</td>";
         $data .= "<td>$".$entry['totInterest']."</td>";
         $data .= "</tr>";
