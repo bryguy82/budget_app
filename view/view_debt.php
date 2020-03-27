@@ -45,9 +45,9 @@
                         <tr>
                             <th>Month</th>
                             <th>Start</th>
-                            <th>Payment</th>
-                            <th>Interest</th>
-                            <th>Principle</th>
+                            <th class='hide'>Payment</th>
+                            <th class='hide'>Interest</th>
+                            <th class='hide'>Principle</th>
                             <th>Remaining Balance</th>
                             <th>Total Interest</th>
                         </tr>
